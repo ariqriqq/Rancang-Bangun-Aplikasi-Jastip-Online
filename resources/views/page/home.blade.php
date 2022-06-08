@@ -1,4 +1,4 @@
-@extends("user.index")
+@extends('user.index')
 
 @section('title')
     <title>Home Page</title>
@@ -21,6 +21,8 @@
                                 <h2 class="animate__animated animate__fadeInDown">Pakaian Indonesia </h2>
                                 <p class="animate__animated animate__fadeInUp">Mencari pakaian-pakaian terbaik dari berbagai
                                     daerah kunjungan jastiper</p>
+                                <a href="/order" class="btn-get-started ">Cari
+                                    Jasa</a>
                             </div>
                         </div>
                     </div>
@@ -31,6 +33,8 @@
                                 <h2 class="animate__animated animate__fadeInDown">Makanan Tradisional Indonesia</h2>
                                 <p class="animate__animated animate__fadeInUp">Makanan tradisional merupakan salah satu ciri
                                     khas yang dimiliki oleh berbagai daerah di Indonesia</p>
+                                <a href="/order" class="btn-get-started">Cari
+                                    Jasa</a>
                             </div>
                         </div>
                     </div>
@@ -42,6 +46,8 @@
                                 <p class="animate__animated animate__fadeInUp">Oleh-oleh khas daerah merupakan salah satu
                                     incaran
                                     terbanyak dari banyaknya customer jastip</p>
+                                <a href="/order" class="btn-get-started ">Cari
+                                    Jasa</a>
                             </div>
                         </div>
                     </div>
@@ -134,11 +140,11 @@
                                 <a class="services-icon" href="#">
                                     <i class="bi bi-briefcase"></i>
                                 </a>
-                                <h4>COD</h4>
+                                <h4>Bayar Penuh</h4>
                                 <p>
-                                    Metode pembayaran COD adalah salah satu sistem pembayaran yang ada pada kegiatan bisnis
-                                    online, selain metode pembayaran melalui transfer bank, e-wallet, atau lewat gerai-gerai
-                                    yang memang telah ditunjuk.
+                                    Metode pembayaran pada transaksi ini menggunakan sistem Cashless, dimana kami tidak
+                                    menyediakan pembayaran secara konvensional. Pada pembayaran pemesanan jasa harus
+                                    menyertakan uang jaminan (DP).
                                 </p>
                             </div>
                         </div>
@@ -218,7 +224,7 @@
                             <div class="single-icon">
                                 <i class="bi bi-envelope"></i>
                                 <p>
-                                    Email: jastipol@gmail.com<br>
+                                    Email: jastipolindonesia@gmail.com<br>
                                 </p>
                             </div>
                         </div>
@@ -261,8 +267,7 @@
                                         placeholder="Subject" required>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <textarea class="form-control" name="message" rows="5" placeholder="Message"
-                                        required></textarea>
+                                    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                                 </div>
                                 <div class="my-3">
                                     <div class="loading">Loading</div>
