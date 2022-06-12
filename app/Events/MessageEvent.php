@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Ramsey\Uuid\Type\Integer;
 
 class MessageEvent implements ShouldBroadcast
 {
@@ -19,7 +20,7 @@ class MessageEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(public string $message)
+    public function __construct(public string $message, public string $user_id, public string $seen, public string $delivered)
     {
         //
     }
@@ -32,5 +33,9 @@ class MessageEvent implements ShouldBroadcast
     public function broadcastOn()
     {
         return ['chat-app'];
+    }
+    public function broadcastAs()
+    {
+        return 'chat';
     }
 }
