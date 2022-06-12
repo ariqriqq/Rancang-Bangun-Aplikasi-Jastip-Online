@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/messages', 'ChatController@store');
-Route::get('chat','ChatController@index');
+
+// Route::post('/messages', 'ChatController@store');
+Route::resource('message', 'MessageController');
 Auth::routes();
 Route::resource('/', 'PagesController');
 Route::resource('/customer', 'CustomerController')->middleware('auth');
