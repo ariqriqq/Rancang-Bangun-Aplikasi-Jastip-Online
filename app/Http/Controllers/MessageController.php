@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\MessageEvent;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -20,8 +21,13 @@ class MessageController extends Controller
     {
         // dd('halo');
         $messages = Message::get();
+        $user = User::where('id', auth()->id())->first();
+        $users = User::where('id', '!=', auth()->id())->get();
+        // dd($user);
         return Inertia::render('Message/Index', [
-            'messages' => $messages
+            'messages' => $messages,
+            'user' => $user,
+            'users' => $users
         ]);
     }
 
@@ -43,17 +49,17 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->seen = (int)$request->seen;
-        $request->delivered = (int)$request->delivered;
-        // dd($request);
-        MessageEvent::dispatch($request->message, $request->user_id, $request->seen, $request->delivered);
-        // $message = Message::create($request->all());
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Successfully stored data to database',
-            // 'data' => $message,
-        ], Response::HTTP_OK);
+        // dd($request);
+        $message = Message::create($request->all());
+        // dd($message->id);
+        MessageEvent::dispatch($message->id, $message->message, $message->user_id, $message->seen, $message->delivered);
+
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Successfully stored data to database',
+        //     // 'data' => $message,
+        // ], Response::HTTP_OK);
     }
 
     /**
