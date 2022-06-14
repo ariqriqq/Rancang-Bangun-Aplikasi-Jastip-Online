@@ -37,7 +37,7 @@
                                 </li> --}}
                             <li><a href="/myorder">Pesanan Saya</a></li>
                             <li><a href="#">Pesanan Pembeli</a></li>
-                            <li><a href="/chat">Chat</a></li>
+                            <li><a href="/message">Chat</a></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">LogOut</a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
