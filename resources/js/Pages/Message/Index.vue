@@ -12,14 +12,18 @@
               </div>
               <input type="text" class="form-control" placeholder="Search..." />
             </div>
-            <ul class="list-unstyled chat-list mt-2 mb-0">
-              <li class="clearfix">
+            <ul
+              v-for="(user, index) in users"
+              :key="index"
+              class="list-unstyled chat-list mt-2 mb-0"
+            >
+              <li @click="showSpecificChat(user.id)" class="clearfix">
                 <img
                   src="https://bootdey.com/img/Content/avatar/avatar1.png"
                   alt="avatar"
                 />
                 <div class="about">
-                  <div class="name">Vincent Porter</div>
+                  <div class="name">{{ user.name }}</div>
                   <div class="status">
                     <i class="fa fa-circle offline"></i>
                     left 7 mins ago
@@ -65,24 +69,7 @@
                 </div>
               </div>
             </div>
-            <div class="chat-history">
-              <ul class="m-b-0">
-                <li class="clearfix">
-                  <div class="message-data">
-                    <span class="message-data-time">10:12 AM, Today</span>
-                  </div>
-                  <div class="message other-message float-right">
-                    Hi Aiden, how are you? How is the project coming along?
-                  </div>
-                </li>
-                <li class="clearfix">
-                  <div class="message-data">
-                    <span class="message-data-time">10:12 AM, Today</span>
-                  </div>
-                  <div class="message my-message">Are we meeting today?</div>
-                </li>
-              </ul>
-            </div>
+            <Chat :messages="messages"></Chat>
             <div class="chat-message clearfix">
               <div class="input-group mb-0">
                 <div class="input-group-prepend">
@@ -113,28 +100,37 @@ import { Inertia } from "@inertiajs/inertia";
 import { reactive, ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import Pusher from "pusher-js";
+import Chat from "../../Pages/Message/Chat.vue";
+import { usePage } from "@inertiajs/inertia-vue3";
 
-props: {
-  posts: Array; // <- nama props yang dibuat di controller saat parsing data
-}
+// props: {
+//   messages: Object;
+//   user: Object;
+// }
 // layout: LayoutApp;
 const formMessage = reactive({
-  user_id: "",
   message: "",
   seen: "",
   delivered: "",
 });
-const messages = ref([]);
+const users = ref(usePage().props.value.users);
+const messages = ref(null);
+messages.value = usePage().props.value.messages;
+
 const sendMessage = () => {
   // console.log("Hello");
   Inertia.post("message", {
     message: formMessage.message,
-    user_id: formMessage.user_id,
-    seen: 0,
-    delivered: 1,
+    user_id: usePage().props.value.user.id,
+    seen: "0",
+    delivered: "1",
   });
 };
+const showSpecificChat = (id) => {
+  Inertia.get(`message/${id}`);
+};
 onMounted(() => {
+  // console.log(usePage().props.value.user.id);
   Pusher.logToConsole = true;
   const pusher = new Pusher("f37cfcff0d00613044b2", {
     cluster: "ap1",
