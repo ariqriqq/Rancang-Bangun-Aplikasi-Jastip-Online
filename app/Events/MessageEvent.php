@@ -20,7 +20,7 @@ class MessageEvent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(public string $message, public string $user_id, public string $seen, public string $delivered)
+    public function __construct(public string $id, public string $message, public string $user_id, public string $seen, public string $delivered)
     {
         //
     }
