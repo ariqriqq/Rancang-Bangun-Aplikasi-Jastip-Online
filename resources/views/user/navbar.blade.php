@@ -50,7 +50,7 @@
                 @else
                     <li><a class="nav-link scrollto" href="/login"><i style="font-size: 20px;"
                                 class="pe-2 fa-solid fa-user"></i>Login</a></li>
-                    <a class="button" href="/register">Register</a>
+                    <a class="button" href="/daftar">Register</a>
                 @endif
                 {{-- <a href="blog.html">Blog</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
