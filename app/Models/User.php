@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+
+    public function jastiper()
+    {
+        return $this->hasMany(Jastiper::class);
+    }
 }
