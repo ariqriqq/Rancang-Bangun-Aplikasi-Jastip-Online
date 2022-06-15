@@ -24,6 +24,9 @@ Route::resource('/customer', 'CustomerController')->middleware('auth');
 Route::get('/order', function () {
     return view('page.order');
 })->middleware('auth');
+Route::get('/daftar', function () {
+    return view('auth.daftar');
+});
 Route::get('/bejastiper', function () {
     return view('page.bejastiper');
 })->middleware('auth');
