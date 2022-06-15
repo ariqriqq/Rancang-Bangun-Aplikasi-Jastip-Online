@@ -18,6 +18,9 @@ Route::resource('message', 'MessageController');
 Auth::routes();
 Route::resource('/', 'PagesController');
 Route::resource('/customer', 'CustomerController')->middleware('auth');
+Route::resource('/jastiper', 'JastiperController')->middleware('auth');
+
+
 // Route::get('/', function () {
 //     return view('page.home');
 // });
