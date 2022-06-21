@@ -52,8 +52,9 @@ class JastiperController extends Controller
             'nama_ewallet' => $request->nama_ewallet,
             'jenis_ewallet' => $request->jenis_ewallet,
             'nomor_ewallet' => $request->nomor_ewallet,
+            'status' => 'Pending'
         ]);
-        return redirect('/page/profile');
+        return view('page.profile');
     }
 
     /**
