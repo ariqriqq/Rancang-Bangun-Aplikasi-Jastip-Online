@@ -6,10 +6,13 @@
 @section('content')
     <div class="container mt-3 mb-5">
         <div class="section-body">
-            <h4 class="section-lead">
-                Change information below on this page.
-            </h4>
-
+            <div class="footer-content text-center">
+                <div class="footer-head">
+                    <div class="footer-logo ">
+                        <h2>Informasi Akun</h2>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-6">
 
@@ -23,7 +26,7 @@
                             @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Nama Lengkap</label>
+                                    <label class="fw-bold">Nama Lengkap</label>
                                     <input type="text" value="{{ $user->name }}" name="name"
                                         class="form-control  @error('name') is-invalid @enderror" required
                                         autocomplete="name" autofocus>
@@ -34,7 +37,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label>Email</label>
+                                    <label class="fw-bold">Email</label>
                                     <input type="text" value="{{ $user->email }}" name="email"
                                         class="form-control @error('email') is-invalid @enderror" required
                                         autocomplete="email" autofocus>
@@ -45,22 +48,29 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label>Alamat Lengkap</label>
-                                    <input type="text" value="{{ $user->customer->alamat }}" name="alamat"
-                                        class="form-control  @error('alamat') is-invalid @enderror" required
-                                        autocomplete="alamat" autofocus>
-                                    @error('alamat')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label>Nomor Handphone (WA Aktif)</label>
+                                    <label class="fw-bold">Alamat Lengkap</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="fas fa-phone"></i>
+                                                <i class="bi bi-house-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" value="{{ $user->customer->alamat }}" name="alamat"
+                                            class="form-control  @error('alamat') is-invalid @enderror" required
+                                            autocomplete="alamat" autofocus>
+                                        @error('alamat')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label class="fw-bold">Nomor Handphone (WA Aktif)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-phone-vibrate-fill"></i>
                                             </div>
                                         </div>
                                         <input type="text" value="{{ $user->customer->no_hp }}" name="no_hp"
@@ -74,25 +84,32 @@
                                     </div>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label>Jenis Kelamin</label>
-                                    <select class="form-control" value="{{ $user->customer->jenis_kelamin }}"
-                                        name="jenis_kelamin">
-                                        <option
-                                            value="{{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Laki-Laki' : 'Perempuan' }}">
-                                            {{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Laki-Laki' : 'Perempuan' }}
-                                        </option>
-                                        <option
-                                            value="{{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Perempuan' : 'Laki-Laki' }}">
-                                            {{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Perempuan' : 'Laki-Laki' }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label>Tanggal Lahir</label>
+                                    <label class="fw-bold">Jenis Kelamin</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="fas fa-columns"></i>
+                                                <i class="bi bi-gender-ambiguous"></i>
+                                            </div>
+                                        </div>
+                                        <select class="form-control" value="{{ $user->customer->jenis_kelamin }}"
+                                            name="jenis_kelamin">
+                                            <option
+                                                value="{{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Laki-Laki' : 'Perempuan' }}">
+                                                {{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Laki-Laki' : 'Perempuan' }}
+                                            </option>
+                                            <option
+                                                value="{{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Perempuan' : 'Laki-Laki' }}">
+                                                {{ $user->customer->jenis_kelamin === 'Laki-Laki' ? 'Perempuan' : 'Laki-Laki' }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label class="fw-bold">Tanggal Lahir</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-calendar-date-fill"></i>
                                             </div>
                                         </div>
                                         <input type="date" value="{{ $user->customer->tanggal_lahir }}"
