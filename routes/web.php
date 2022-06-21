@@ -20,31 +20,41 @@ Route::resource('/', 'PagesController');
 Route::resource('/customer', 'CustomerController')->middleware('auth');
 Route::resource('/jastiper', 'JastiperController')->middleware('auth');
 
+Route::get('/order', function () {
+    return view('page.order');
+})->middleware('auth');
+
+Route::get('/daftar', function () {
+    return view('auth.daftar');
+});
+
+Route::get('/bejastiper', function () {
+    return view('page.bejastiper');
+})->middleware('auth');
+
+Route::get('/myorder', function () {
+    return view('page.myorder');
+})->middleware('auth');
+
+Route::get('/bukajasa', function(){
+    return view('page.bukajasa');
+})->middleware('auth');
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/verifikasi', function () {
+    return view('page.verifikasi');
+});
 
 // Route::get('/', function () {
 //     return view('page.home');
 // });
-Route::get('/order', function () {
-    return view('page.order');
-})->middleware('auth');
-Route::get('/daftar', function () {
-    return view('auth.daftar');
-});
-Route::get('/bejastiper', function () {
-    return view('page.bejastiper');
-})->middleware('auth');
-Route::get('/myorder', function () {
-    return view('page.myorder');
-})->middleware('auth');
+
 // Route::get('/profile', function () {
 //     return view('page.profile');
 // })->middleware('auth');
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-Route::get('/verifikasi', function () {
-    return view('page.verifikasi');
-});
 // Route::get('/register', function () {
 //     return view('page.register');
 // });
