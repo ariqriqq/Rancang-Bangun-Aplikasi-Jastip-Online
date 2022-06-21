@@ -5,19 +5,17 @@
 @endsection
 
 @section('content')
-    <div class="mt-3 mb-3">
+    <div class="mt-4 mb-3">
         <div class="row mx-auto">
             <div class="col-2">
-                <div class="card ">
+                <div class="card bg-info" >
                     <div class="card-header">
-                        Cari Info Jastiper
+                        <h4>Cari Info Jastiper</h4>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">Tujuan Kota Jastiper</p>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <p class="card-text">Kota Jastiper</p>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <a href="#" class="btn btn-primary mt-3">Cari</a>
+                        <a href="#" class="btn btn-primary mt-3">Cari&nbsp;<i class="bi bi-search"></i></a>
                     </div>
                 </div>
             </div>
