@@ -41,7 +41,7 @@
                 <input type="Submit" value="Daftar">
             </div>
             <div class="text">
-                <h3>Already have an account? <a href="/login">Login now</a></h3>
+                <h3>Sudah Punya Akun? <a href="/login">Login</a></h3>
             </div>
             <div class="text">
                 <h3>Kembali Ke Halaman Utama <a href="/">Back</a></h3>
