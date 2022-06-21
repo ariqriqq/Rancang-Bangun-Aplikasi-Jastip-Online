@@ -21,7 +21,8 @@ class Jastiper extends Model
         'nomor_rekening',
         'nama_ewallet',
         'jenis_ewallet',
-        'nomor_ewallet'
+        'nomor_ewallet',
+        'status'
     ];
 
     public function user()
