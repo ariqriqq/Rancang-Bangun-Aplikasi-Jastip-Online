@@ -2508,7 +2508,7 @@ span.email-notes {
     transition: all 0.3s ease;
 }
 
-.input-box select{
+.input-box select {
     height: 100%;
     width: 100%;
     outline: none;
@@ -2516,8 +2516,26 @@ span.email-notes {
     font-size: 17px;
     font-weight: 400;
     color: #333;
-    border: 1.5px solid #C7BEBE;
+    border: 1.5px solid #c7bebe;
     border-bottom-width: 2.5px;
     border-radius: 6px;
     transition: all 0.3s ease;
+}
+
+.wrapper {
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    padding: 34px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgb(255, 255, 255);
+}
+.wrapper h2{
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
   }
