@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jastiper;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JastiperController extends Controller
 {
@@ -14,7 +16,10 @@ class JastiperController extends Controller
      */
     public function index()
     {
-        //
+        $jastiper=Jastiper::with('user')->get();
+        return view('page.admin.pendaftaran')->with([
+            'jastiper'=>$jastiper,
+        ]);
     }
 
     /**
@@ -54,7 +59,8 @@ class JastiperController extends Controller
             'nomor_ewallet' => $request->nomor_ewallet,
             'status' => 'Pending'
         ]);
-        return view('page.profile');
+        $user = User::with('customer')->where('id', Auth::user()->id)->first();
+        return view('page.profile', ['user'=>$user]);
     }
 
     /**
