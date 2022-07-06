@@ -19,6 +19,8 @@ Auth::routes();
 Route::resource('/', 'PagesController');
 Route::resource('/customer', 'CustomerController')->middleware('auth');
 Route::resource('/jastiper', 'JastiperController')->middleware('auth');
+Route::get('/pendaftaran', 'JastiperController@index');
+
 
 Route::get('/order', function () {
     return view('page.customer.order');
@@ -55,6 +57,16 @@ Route::get('/pembayaran', function () {
 Route::get('/history', function () {
     return view('page.customer.history');
 });
+
+Route::get('/gdashboard', function(){
+    return view('page.admin.gdashboard');
+});
+
+Route::get('/edashboard', function(){
+    return view('page.admin.edashboard');
+});
+
+
 // Route::get('/', function () {
 //     return view('page.home');
 // });
