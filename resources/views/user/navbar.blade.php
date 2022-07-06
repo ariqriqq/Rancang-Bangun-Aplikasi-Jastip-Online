@@ -24,7 +24,7 @@
                     <li class="dropdown"><a href="#"><span>Hi, {{ Auth()->user()->name }}</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="/customer/{{ auth()->user()->id }}/edit">Profil</a></li>
+                            <li><a href="/customer">Profil</a></li>
                             {{-- <li class="dropdown"><a href="#"><span>Nama User</span> <i
                                             class="bi bi-chevron-right"></i></a>
                                     <ul>

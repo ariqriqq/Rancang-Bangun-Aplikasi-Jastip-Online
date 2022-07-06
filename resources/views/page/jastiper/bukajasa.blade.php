@@ -46,9 +46,9 @@
                         </select>
                     </div>
 
-                    <p class="fw-bold mt-3">Harga Jasa</p>
+                    <p class="fw-bold mt-3">Tanggal Tutup Pemesanan Jasa</p>
                     <div class="form-group">
-                        <input type="text" name="kota_jastip" class="form-control" placeholder="Harga Jasa*"
+                        <input type="date" name="tutup_pesanan" class="form-control" placeholder="Harga Jasa*"
                             required>
                     </div>
                     <button type="submit" class="btn btn-primary mt-5">Konfirmasi</button>

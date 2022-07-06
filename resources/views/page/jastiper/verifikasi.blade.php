@@ -64,7 +64,7 @@
                         <div class="footer-head">
                             <p class="fw-bold">Upload KTP Pemilik Bisnis</p>
                             <div>
-                                <input name="ktp" type="file" accept="image/png|image/jpg|.pdf">
+                                <input name="ktp" type="file" accept="image/png|image/jpg|.pdf" required>
 
                                 <p class="mt-3 fw-bold text-white" style="background-color: #28b3c9">&nbsp; <i
                                         class="fas fa-info"></i>
