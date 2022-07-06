@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -15,7 +16,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::with('customer')->where('id', Auth::user()->id)->first();
+        return view('page.profile')->with([
+            "user"=>$user,
+        ]);
     }
 
     /**
@@ -58,10 +62,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $user = User::with('customer')->where('id', $id)->first();
-        return view('page.profile')->with([
-            "user"=>$user,
-        ]);
+//
     }
 
     /**
