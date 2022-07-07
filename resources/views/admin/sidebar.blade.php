@@ -8,7 +8,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
-            <li class="nav-item dropdown {{ Request::is('gdashboard','edashboard') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('gdashboard', 'edashboard') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('gdashboard') ? 'active' : '' }}"><a class="nav-link"
@@ -18,10 +18,11 @@
                 </ul>
             </li>
             <li class="menu-header">Validasi Data</li>
-            <li class="{{ Request::is('pendaftaran') ? 'active' : '' }}"><a  href="/pendaftaran"><i class="far fa-file-alt"></i> <span>Pendaftaran
+            <li class="{{ Request::is('pendaftaran') ? 'active' : '' }}"><a href="/pendaftaran"><i
+                        class="far fa-file-alt"></i> <span>Pendaftaran
                         Jastiper</span></a></li>
 
-                        
+
             <li class="menu-header">Pembayaran</li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
