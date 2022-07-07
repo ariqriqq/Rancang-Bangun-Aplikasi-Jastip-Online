@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('jastiper', function (Blueprint $table) {
+        Schema::table('jastipers', function (Blueprint $table) {
             $table->string('nomor_rekening')->after('jenis_rekening');
             $table->string('nomor_ewallet')->after('jenis_ewallet');
             $table->string('status')->after('nomor_ewallet')->nullable();
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('jastiper', function (Blueprint $table) {
+        Schema::table('jastipers', function (Blueprint $table) {
             //
         });
     }
