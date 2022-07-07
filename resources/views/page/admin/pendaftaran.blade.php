@@ -39,7 +39,7 @@
                                             <td class="font-weight-600">{{ $jastiper->nama_jastiper }}</td>
                                             <td class="font-weight-600">
                                                 {{ $jastiper->kota_jastiper }}, {{ $jastiper->alamat_jastiper }}</td>
-                                            <td><img src="{{ $jastiper->ktp}}"></td>
+                                            <td><img src="{{ $jastiper->ktp }}"></td>
                                             <td>{{ $jastiper->no_hp_jastiper }}</td>
                                             <td>
                                                 <div class="badge badge-success">{{ $jastiper->status }}</div>
