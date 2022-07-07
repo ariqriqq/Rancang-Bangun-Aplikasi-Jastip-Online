@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jastiper extends Model
 {
-    protected $table = 'jastiper';
+
     use HasFactory;
     protected $fillable = [
         'user_id',
@@ -28,5 +28,10 @@ class Jastiper extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function jasa()
+    {
+        return $this->hasMany(Jasa::class);
     }
 }
