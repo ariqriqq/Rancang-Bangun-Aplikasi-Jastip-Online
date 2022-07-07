@@ -19,6 +19,7 @@ Auth::routes();
 Route::resource('/', 'PagesController');
 Route::resource('/customer', 'CustomerController')->middleware('auth');
 Route::resource('/jastiper', 'JastiperController')->middleware('auth');
+Route::resource('/bukajasa', 'JasaController')->middleware('auth');
 Route::get('/pendaftaran', 'JastiperController@index');
 
 
