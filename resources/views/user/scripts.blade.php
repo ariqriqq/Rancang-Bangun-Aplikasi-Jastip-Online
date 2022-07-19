@@ -4,6 +4,8 @@
 <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.js') }}"></script>
 <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="SB-Mid-client-bEfOqTI-XzYWS1-I"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="{{ asset('assets/js/bank.js') }}"></script>

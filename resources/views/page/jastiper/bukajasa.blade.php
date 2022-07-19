@@ -36,16 +36,6 @@
                             <input type="text" name="harga_jasa" class="form-control" placeholder="Harga Jasa*" required>
                         </div>
 
-                        <p class="fw-bold mt-3">Uang Jaminan/Uang Muka</p>
-                        <div class="form-group mt-3">
-                            <select class="form-control" name="uang_muka">
-                                <option selected disabled>Pilih Nominal </option>
-                                <option value="Rp10.000">Rp10.000 </option>
-                                <option value="Rp20.000">Rp20.000 </option>
-                                <option value="Rp25.000">Rp25.000 </option>
-                            </select>
-                        </div>
-
                         <p class="fw-bold mt-3">Tanggal Tutup Pemesanan Jasa</p>
                         <div class="form-group">
                             <input type="date" name="tanggal_tutup" class="form-control" placeholder="Harga Jasa*"

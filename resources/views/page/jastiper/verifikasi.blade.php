@@ -6,6 +6,7 @@
 
 
 @section('content')
+    @if($jastiper===null)
     <div class="text-center mt-2 mb-4">
         <h3 class="shadow-sm p-3 mb-5 bg-body rounded">Verifikasi Data Jastiper</h3>
     </div>
@@ -155,4 +156,9 @@
             </div>
         </div>
     </form>
+    @else
+    <div class="container text-center">
+        <p class="fw-bold">Tunggu data diverifikasi</p>
+    </div>
+    @endif
 @endsection

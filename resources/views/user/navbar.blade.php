@@ -17,34 +17,33 @@
                 <li><a class="nav-link scrollto" href="/myorder"><i style="font-size: 20px;"
                             class="pe-2 fa-solid fa-file-arrow-up"></i>Pesanan Saya</a>
                 </li>
-                <li><a class="nav-link scrollto " href="/bejastiper"><i style="font-size: 20px;"
-                            class="pe-2 fa-solid fa-handshake fa-xl "></i>Daftar
-                        Jastiper</a></li>
                 @if (auth()->user())
+                    @if (auth()->user()->role === 'user')
+                        <li><a class="nav-link scrollto " href="/bejastiper"><i style="font-size: 20px;"
+                                    class="pe-2 fas fa-people-carry "></i>Daftar Jastiper</a></li>
+                    @else
+                        <li><a class="nav-link scrollto " href="/bukajasa"><i style="font-size: 20px;"
+                                    class="pe-2 fa-solid fa-handshake fa-xl "></i>Buka Jasa</a></li>
+                    @endif
+
                     <li class="dropdown"><a href="#"><span>Hi, {{ Auth()->user()->name }}</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="/customer">Profil</a></li>
-                            {{-- <li class="dropdown"><a href="#"><span>Nama User</span> <i
-                                            class="bi bi-chevron-right"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Drop Down 1</a></li>
-                                        <li><a href="#">Deep Drop Down 2</a></li>
-                                        <li><a href="#">Deep Drop Down 3</a></li>
-                                        <li><a href="#">Deep Drop Down 4</a></li>
-                                        <li><a href="#">Deep Drop Down 5</a></li>
-                                    </ul>
-                                </li> --}}
                             <li><a href="/myorder">Pesanan Saya</a></li>
-                            <li><a href="#">Pesanan Pembeli</a></li>
+                            @if (auth()->user())
+                                @if (auth()->user()->role === 'jastiper')
+                                    <li><a href="/orderan">Pesanan Customer</a></li>
+                                @endif
+                            @endif
                             <li><a href="/message">Chat</a></li>
-                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">LogOut</a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
+                            <li><a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">LogOut</a>
+                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-
                         </ul>
                     </li>
                 @else
@@ -52,27 +51,7 @@
                                 class="pe-2 fa-solid fa-user"></i>Login</a></li>
                     <a class="button" href="/daftar">Register</a>
                 @endif
-                {{-- <a href="blog.html">Blog</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                    class="bi bi-chevron-right"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-            </ul> --}}
+
             </ul>
             <i class="bi bi-list mobile-nav-toggle "></i>
         </nav><!-- .navbar -->

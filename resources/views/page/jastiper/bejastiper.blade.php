@@ -26,7 +26,10 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs=12">
                     <div class="suscribe-text text-center">
                         <h3>Welcome to our Jastip.ol company</h3>
-                        <a class="sus-btn" href="/verifikasi">Get Started</a>
+                        <form action="/verifikasi/{{auth()->user()->id}}" method="POST">
+                            @csrf
+                            <button class="btn btn-primary mt-3" type="submit">Daftar</button>
+                        </form>
                     </div>
                 </div>
             </div>

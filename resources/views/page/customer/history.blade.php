@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="mt-5 mb-3 container">
+    <div class="mt-5 mb-3 container-fluid">
         <div class="row mx-auto">
             <div class="col-3">
                 <div class="card ">
@@ -36,7 +36,7 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>Nama Produk</th>
+                            <th>Pesanan</th>
                             <th>Nama Jastiper</th>
                             <th>Kota</th>
                             <th>Expedisi</th>

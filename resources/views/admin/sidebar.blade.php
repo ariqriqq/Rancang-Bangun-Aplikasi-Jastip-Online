@@ -21,6 +21,8 @@
             <li class="{{ Request::is('pendaftaran') ? 'active' : '' }}"><a href="/pendaftaran"><i
                         class="far fa-file-alt"></i> <span>Pendaftaran
                         Jastiper</span></a></li>
+            <li class=""><a href="/validasi-pembayaran"><i
+                        class="far fa-file-alt"></i> <span>Pembayaran Customer</span></a></li>
 
 
             <li class="menu-header">Pembayaran</li>
