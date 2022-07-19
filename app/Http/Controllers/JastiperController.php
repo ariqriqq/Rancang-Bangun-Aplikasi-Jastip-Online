@@ -22,6 +22,15 @@ class JastiperController extends Controller
         ]);
     }
 
+    public function form($id)
+    {
+        $jastiper = Jastiper::where('status','pending')->where('user_id',$id)->first();
+            return view('page.jastiper.verifikasi')->with([
+                'jastiper' =>$jastiper,
+            ]);
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -42,8 +51,9 @@ class JastiperController extends Controller
     {
         // dd($request);
 
+        // dd(url('/'));
         $file = $request -> file('ktp');
-        $ktp = $file -> storeAs('public/img/document',$file->getClientOriginalName());
+        $ktp = $file -> move(('img'),$file->getClientOriginalName());
         $jastiper = Jastiper::create([
             'user_id' => auth()->user()->id,
             'nama_jastiper' => $request->nama_jastiper,
@@ -59,6 +69,7 @@ class JastiperController extends Controller
             'nomor_ewallet' => $request->nomor_ewallet,
             'status' => 'Pending'
         ]);
+
         $user = User::with('customer')->where('id', Auth::user()->id)->first();
         return view('page.profile', ['user'=>$user]);
     }
@@ -92,9 +103,20 @@ class JastiperController extends Controller
      * @param  \App\Models\Jastiper  $jastiper
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jastiper $jastiper)
+    public function update($id)
     {
-        //
+        $jastiper = Jastiper::findOrFail($id);
+        $user = User::where('id',$jastiper->user_id);
+        $jastiper -> update([
+            'status' => 'Terverifikasi',
+
+        ]);
+        $user -> update([
+            'role' => 'jastiper',
+            'jastiper_id' => $jastiper->id,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

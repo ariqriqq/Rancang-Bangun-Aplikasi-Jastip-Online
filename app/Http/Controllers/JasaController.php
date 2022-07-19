@@ -16,8 +16,14 @@ class JasaController extends Controller
      */
     public function index()
     {
-        //
+        $jasa = Jasa::with('jastiper')->get();
+        // dd($jasa);
+        return view('page.customer.order')->with([
+            'jasa' => $jasa,
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,16 +47,14 @@ class JasaController extends Controller
         // dd (Auth::user()->jastiper()->id);
         // dd(auth()->user());
         // dd($request);
-        $jastiper=Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
+        $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
         // dd($jastiper);
         $jasa = Jasa::create([
             'jastiper_id' => $jastiper->id,
             'kota_jasa' => $request->kota_jasa,
             'harga_jasa' => $request->harga_jasa,
-            'uang_muka' => $request->uang_muka,
             'tanggal_tutup' => $request->tanggal_tutup
         ]);
-        // $jastiper = Jastiper::with('customer')->where('id', Auth::user()->id)->first();
         return view('page.home');
     }
 
@@ -63,7 +67,11 @@ class JasaController extends Controller
      */
     public function show($id)
     {
-        //
+        $jasa = Jasa::with('jastiper')->findOrFail($id);
+
+        return view('page.customer.form_order',[
+            'data'=>$jasa
+        ]);
     }
 
     /**

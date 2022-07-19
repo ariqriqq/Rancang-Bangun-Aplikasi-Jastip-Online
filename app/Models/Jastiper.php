@@ -30,8 +30,8 @@ class Jastiper extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function jasa()
+    public function order()
     {
-        return $this->hasMany(Jasa::class);
+        return $this->hasMany(Order::class);
     }
 }

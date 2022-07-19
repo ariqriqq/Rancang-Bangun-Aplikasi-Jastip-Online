@@ -22,4 +22,9 @@ class Jasa extends Model
     {
         return $this->belongsTo(Jastiper::class);
     }
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+    
 }

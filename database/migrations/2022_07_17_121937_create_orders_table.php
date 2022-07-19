@@ -13,12 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jasa', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('kota_jasa');
-            $table->string('harga_jasa');
-            // $table->string('uang_muka');
-            $table->date('tanggal_tutup');
+            $table->string('jasa_id');
+            $table->string('customer_id');
+            $table->string('status');
+            $table->string('kurir');
+            $table->string('metode_pembayaran');
+            $table->string('pesanan');
+            $table->string('jumlah');
+            $table->string('satuan');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jasa');
+        Schema::dropIfExists('orders');
     }
 };
