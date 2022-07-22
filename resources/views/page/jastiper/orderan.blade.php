@@ -51,19 +51,20 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->created_at }}</td>
-                                <td>{{ $data->pesanan }}({{ $data->jumlah }})</td>
-                                <td>{{ $data->customer->name }}</td>
+                                <td>{{ $data->pesanan }} ({{ $data->jumlah }} {{ $data->satuan }}) - {{ $data->deskripsi }}</td>
+                                <td></td>
                                 <td>{{ $data->customer->alamat }}</td>
                                 <td>{{ $data->kurir }}</td>
                                 <td>{{ $data->customer->no_hp }}</td>
-                                <td></td>
-                                <td>{{ $data->status }}</td>
+                                <td>Rp{{ $data->total_harga }}</td>
+                                <td>{{ $data->status }} (Rp{{ $data->jasa->harga_jasa }})</td>
                                 <td class="">
-                                    <a href="/orderan/{{ $data->id }}" class="btn btn-primary mb-2 mr-2">Edit</a>
+                                    <form action="/form_pembayaran/{{ $data->id }}" method="GET">
+                                        @csrf
+                                        <button class="btn btn-primary mb-1" type="submit">Pembayaran</button>
+                                    </form>
                                     {{-- <a href="{{ route('orderan') }}" class="btn btn-primary mb-2 mr-2">Edit</a> --}}
                                     <form action="" method="POST">
-
-
                                         <button class="btn btn-danger" type="submit">Delete</button>
                                     </form>
                                 </td>

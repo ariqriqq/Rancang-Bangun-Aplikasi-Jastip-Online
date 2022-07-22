@@ -18,13 +18,13 @@
                         </div>
                     </div>
                     <div class="card-body" style=" padding:0">
-                        <a type="button" class="btn btn-outline-secondary"
-                            style="width:100%; border-radius:0 0" href="/myorder">Pesanan
+                        <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
+                            href="/myorder">Pesanan
                             Saya</a>
-                        <a type="button" class="btn btn-outline-secondary"
-                            style="width:100%; border-radius:0 0" href="/pembayaran">Pembayaran</a>
-                        <a type="button" class="btn btn-outline-secondary"
-                            style="width:100%; border-radius:0 0" href="/history">History Pemesanan</a>
+                        <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
+                            href="/pembayaran">Pembayaran</a>
+                        <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
+                            href="/history">History Pemesanan</a>
                     </div>
                 </div>
             </div>
@@ -35,38 +35,40 @@
                     <table class="table table-bordered table-md bg-light text-dark">
                         <tr>
                             <th>No</th>
+                            {{-- <th>Id Pesanan</th> --}}
                             <th>Tanggal</th>
-                            <th>Status</th>
                             <th>Pesanan</th>
+                            <th>Status</th>
                             <th>Nama Jastiper</th>
                             <th>Kota</th>
                             <th>Expedisi</th>
-                            <th>Uang Muka</th>
-                            <th>Total Harga</th>
+                            <th>Uang Muka (Harga Jasa)</th>
+                            <th>Total Harga Pesanan</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
 
                         @forelse($order as $order)
-                        @csrf
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $order->created_at }}</td>
-                            <td>{{ $order->status }}</td>
-                            <td>{{ $order->pesanan }}({{ $order->jumlah }})</td>
-                            <td></td>
-                            <td>{{ $order->jasa->kota_jasa }} </td>
-                            <td>{{ $order->kurir }}</td>
-                            <td>{{ $order->jasa->harga_jasa }} (Harga Jasa)</td>
-                            <td></td>
-                            <td></td>
-                            <td class="">
-                                <a href="" class="btn btn-primary mb-2 mr-2">Edit</a>
-                                <form action="" method="POST">
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
+                            @csrf
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->pesanan }} ({{ $order->jumlah }} {{ $order->satuan }}) -
+                                    {{ $order->deskripsi }}</td>
+                                <td>{{ $order->status }}</td>
+                                <td>{{ $order->jastiper->nama_jastiper }}</td>
+                                <td>{{ $order->jasa->kota_jasa }} </td>
+                                <td>{{ $order->kurir }}</td>
+                                <td>Rp{{ $order->jasa->harga_jasa }} - {{ $order->metode_pembayaran }} </td>
+                                <td>Rp{{ $order->total_harga }}</td>
+                                <td></td>
+                                <td class="">
+                                    <a href="" class="btn btn-primary mb-2 mr-2">Edit</a>
+                                    <form action="" method="POST">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
                         @empty
                         @endforelse
 

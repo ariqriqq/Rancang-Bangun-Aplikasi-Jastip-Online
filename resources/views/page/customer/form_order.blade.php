@@ -75,6 +75,10 @@
                                 value="{{ $data->id }}" placeholder required hidden>
                         </div>
                         <div class="form-group">
+                            <input type="text" name="jastiper_id" class="form-control"
+                                value="{{ $data->jastiper_id }}" placeholder required hidden>
+                        </div>
+                        <div class="form-group">
                             <input type="text" name="customer_id" class="form-control"
                                 value="{{ auth()->user()->customer->id }}" placeholder required hidden>
                         </div>

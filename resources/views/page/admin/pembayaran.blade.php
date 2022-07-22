@@ -26,7 +26,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Customer</th>
-                                        <th>Nama Pemilik Bisnis</th>
+                                        <th>Nama Jastiper</th>
                                         <th>Alamat</th>
                                         <th>Metode Pembayaran</th>
                                         <th>No Hp</th>
@@ -45,7 +45,7 @@
                                             <td>
                                                 <div class="badge badge-success">{{ $order->status }}</div>
                                             </td>
-                                            <form method='POST' action='/validasi-pendaftaran/{{ $order->id }}'>
+                                            <form method='POST' action='/validasi-pembayaran/{{ $order->id }}'>
                                             @csrf
                                             <td>
                                                 <button type="submit" class="btn btn-primary">Verifikasi</button>

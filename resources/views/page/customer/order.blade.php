@@ -23,16 +23,16 @@
                 <div class="row">
                     {{-- @for ($i = 0; $i < 100; $i++) --}}
                     @forelse ($jasa as $jasa)
-                        <div class="col-4">
+                        <div class="col-4 mb-3">
                             <div class="pri_table_list">
                                 <h3>{{ $jasa->kota_jasa }}<br /> <span>Harga Jasa : Rp{{ $jasa->harga_jasa }}</span>
                                 </h3>
                                 <ol>
                                     <li class="check"><i class="bi "></i><span>Batas tanggal pemesanan :
                                             {{ $jasa->tanggal_tutup }}</span></li>
-                                    <li class="check"><i class="bi "></i><span>Uang Muka :
+                                    <li class="check"><i class="bi "></i><span>Nama Jastiper : {{ $jasa->jastiper->nama_jastiper }}
                                             {{ $jasa->uang_muka }}</span></li>
-                                    <li class="check"><i class="bi bi-check"></i><span>Free apps</span></li>
+                                    <li class="check"><i class="bi bi-check"></i><span>Seluruh Pembayaran Pada Admin </span></li>
                                     <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
 
                                 </ol>

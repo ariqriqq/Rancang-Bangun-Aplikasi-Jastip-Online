@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Jastip.ol</a>
+            <a href="/gdashboard">Jastip.ol</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">Jstp</a>
+            <a href="/gdashboard">Jstp</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
