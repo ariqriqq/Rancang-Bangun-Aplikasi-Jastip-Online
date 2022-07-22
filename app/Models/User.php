@@ -59,4 +59,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Jastiper::class);
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(payment::class);
+    }
 }

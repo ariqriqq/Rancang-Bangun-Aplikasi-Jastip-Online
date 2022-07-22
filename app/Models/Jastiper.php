@@ -34,4 +34,9 @@ class Jastiper extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function payment()
+    {
+        return $this->hasMany(payment::class);
+    }
 }

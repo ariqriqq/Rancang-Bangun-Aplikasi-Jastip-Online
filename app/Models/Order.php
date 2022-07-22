@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         'jasa_id',
+        'jastiper_id',
         'customer_id',
         'status',
         'kurir',
@@ -17,7 +18,8 @@ class Order extends Model
         'pesanan',
         'jumlah',
         'satuan',
-        'deskripsi'
+        'deskripsi',
+        'total_harga',
     ];
 
     public function jastiper()
@@ -35,4 +37,13 @@ class Order extends Model
         return $this->belongsTo(Jasa::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(payment::class);
+    }
 }

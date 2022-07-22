@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function index()
     {
 
-        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->get();
+        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->get();
 
         // $order = Order::with('jastiper')->findOrFail();
         // $order=Order::with('jastiper')->get();
@@ -35,7 +35,8 @@ class OrderController extends Controller
     public function show()
     {
         // $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
-        $order=Order::with('jasa',)->where('jasa_id', Auth::user()->jastiper_id)->get();
+        $order=Order::with('jasa')->where('jasa_id', Auth::user()->jastiper_id)->get();
+
         // $order=Order::with('customer')->get();
         // dd($order);
         return view('page.jastiper.orderan',[
@@ -43,13 +44,24 @@ class OrderController extends Controller
         ]);
     }
 
-    
+
     public function form_pembayaran($id){
         $order=Order::with('jasa')->findOrFail($id);
-        
+        // dd($order);
         return view('page.jastiper.form_pembayaran')->with([
             'data'=>$order
         ]);
+    }
+
+    public function orderan_update(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        // dd($order);
+        $order->update([
+            'total_harga'=>$request->total_harga,
+            // 'data'=>$order
+        ]);
+        return redirect('orderan');
     }
 
     public function store_order(Request $request)

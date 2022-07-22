@@ -18,6 +18,15 @@ class JasaController extends Controller
     {
         $jasa = Jasa::with('jastiper')->get();
         // dd($jasa);
+        return view('page.jastiper.bukajasa')->with([
+            'jasa' => $jasa,
+        ]);
+    }
+
+    public function order()
+    {
+        $jasa = Jasa::with('jastiper')->get();
+        // dd($jasa);
         return view('page.customer.order')->with([
             'jasa' => $jasa,
         ]);
@@ -68,7 +77,7 @@ class JasaController extends Controller
     public function show($id)
     {
         $jasa = Jasa::with('jastiper')->findOrFail($id);
-
+        // dd($jasa);
         return view('page.customer.form_order',[
             'data'=>$jasa
         ]);

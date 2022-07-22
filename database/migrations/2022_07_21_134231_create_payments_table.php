@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('jasa_id');
+            $table->string('order_id');
             $table->string('jastiper_id');
             $table->string('customer_id');
             $table->string('status');
-            $table->string('kurir');
-            $table->string('metode_pembayaran');
-            $table->string('pesanan');
-            $table->string('jumlah');
-            $table->string('satuan');
-            $table->string('deskripsi');
-            $table->string('total_harga')->nullable();
+            $table->string('transaction_id');
+            $table->string('payment_id');
+            $table->string('gross_amount');
+            $table->string('payment_type');
+            $table->string('payment_code')->nullable();
+            $table->string('pdf_url')->nullable();
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('payments');
     }
 };
