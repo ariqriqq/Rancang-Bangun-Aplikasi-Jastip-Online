@@ -12,10 +12,10 @@
                 <li><a class="nav-link scrollto" href="/"><i style="font-size: 20px;"
                             class="pe-2 fa-solid fa-house-chimney"></i>Beranda</a></li>
                 <li><a class="nav-link scrollto" href="/order"><i style="font-size: 20px;"
-                            class="pe-2 fa-solid fa-file-arrow-down"></i>Pesan
+                            class="pe-2 fa-solid fa-cart-plus"></i>Pesan
                         Jasa</a></li>
                 <li><a class="nav-link scrollto" href="/myorder"><i style="font-size: 20px;"
-                            class="pe-2 fa-solid fa-file-arrow-up"></i>Pesanan Saya</a>
+                            class="pe-2 fa-solid fa-cart-shopping"></i>Pesanan Saya</a>
                 </li>
                 @if (auth()->user())
                     @if (auth()->user()->role === 'user')

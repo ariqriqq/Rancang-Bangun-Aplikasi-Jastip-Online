@@ -89,8 +89,8 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Auth</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="auth-forgot-password.html">Forgot Password</a></li>
-                    <li><a href="auth-login.html">Login</a></li>
+                    <li><a href="/data-jastiper">Data Jastiper</a></li>
+                    <li><a href="/data-customer">Data Customer</a></li>
                     <li><a class="beep beep-sidebar" href="auth-login-2.html">Login 2</a></li>
                     <li><a href="auth-register.html">Register</a></li>
                     <li><a href="auth-reset-password.html">Reset Password</a></li>

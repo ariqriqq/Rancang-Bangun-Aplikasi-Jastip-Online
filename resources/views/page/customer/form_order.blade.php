@@ -28,7 +28,8 @@
                         <input type="text" name="kota_jastiper" class="form-control" value="{{ $data->kota_jasa }}"
                             required disabled>
                     </div>
-
+                    <input type="text" name="kota_jastiper" class="form-control" value="{{ auth()->user()->id }}"
+                    required hidden>
                     <p class="fw-bold mt-3">Harga Jasa</p>
                     <div class="form-group">
                         <input type="text" name="no_hp_jastiper" class="form-control" value="{{ $data->harga_jasa }}"

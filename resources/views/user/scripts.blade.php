@@ -1,4 +1,5 @@
 <!-- Vendor JS Files -->
+<script src="https://kit.fontawesome.com/f8d47b84ab.js" crossorigin="anonymous"></script>
 <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.js') }}"></script>
@@ -14,4 +15,3 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<script src="https://kit.fontawesome.com/69c06ec1f2.js" crossorigin="anonymous"></script>

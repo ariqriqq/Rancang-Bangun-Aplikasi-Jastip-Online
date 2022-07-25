@@ -20,12 +20,15 @@ Route::resource('message', 'MessageController');
 Auth::routes();
 Route::resource('/', 'PagesController');
 Route::resource('/customer', 'CustomerController')->middleware('auth');
+Route::put('/customer-ewallet', 'CustomerController@update_ewallet')->middleware('auth');
 Route::resource('/jastiper', 'JastiperController')->middleware('auth');
 Route::resource('/bukajasa', 'JasaController')->middleware('auth');
 Route::resource('/orderan', 'OrderController')->middleware('auth');
 
 Route::get('/pembayaran', 'PaymentController@index')->middleware('auth');
 Route::get('/payment', 'PaymentController@payment');
+Route::get('/data-jastiper', 'AdminController@index');
+Route::get('/data-customer', 'AdminController@customer');
 
 Route::get('/order', 'JasaController@order')->middleware('auth');
 Route::post('/verifikasi/{id}', 'JastiperController@form')->middleware('auth');

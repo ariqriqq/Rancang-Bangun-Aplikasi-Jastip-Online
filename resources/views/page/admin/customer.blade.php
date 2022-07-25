@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Ecommerce Dashboard - Jastipol</title>
+    <title>Customer - Jastipol</title>
 @endsection
 
 
@@ -9,7 +9,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Verifikasi Pembayaran</h1>
+                <h1>Data Customer</h1>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -25,36 +25,31 @@
                                 <table class="table table-striped">
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Customer</th>
-                                        <th>Nama Jastiper</th>
-                                        <th>Alamat</th>
-                                        <th>Metode Pembayaran</th>
+                                        <th>Nama</th>
                                         <th>No Hp</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
+                                        <th>Alamat</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Nama E-Wallet</th>
+                                        <th>Tagihan Jasa</th>
 
-                                    @forelse($order as $order)
+                                    </tr>
+                                    @forelse($data as $data)
                                         @csrf
-                                        @if ($order->status==='menunggu uang muka')
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td class="font-weight-600">{{ $data->name }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->no_hp }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->alamat }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->jenis_kelamin }}</td>
                                             <td class="font-weight-600"></td>
-                                            <td class="font-weight-600">{{ $order->id }}</td>
-                                            <td class="font-weight-600">{{ $order->customer->alamat }}</td>
-                                            <td><img width="200px" src="">{{ $order->metode_pembayaran }}</td>
-                                            <td>{{ $order->customer->no_hp }}</td>
+
+                                            {{-- <form method='POST' action='/validasi-pembayaran/{{ $order->id }}'>
+                                        @csrf --}}
                                             <td>
-                                                <div class="badge badge-success">{{ $order->status }}</div>
+                                                <button type="submit" class="btn btn-primary">Lihat</button>
                                             </td>
-                                            <form method='POST' action='/validasi-pembayaran/{{ $order->id }}'>
-                                            @csrf
-                                            <td>
-                                                <button type="submit" class="btn btn-primary">Verifikasi</button>
-                                            </td>
-                                            </form>
+                                            {{-- </form> --}}
                                         </tr>
-                                        @endif
                                     @empty
                                     @endforelse
                                 </table>

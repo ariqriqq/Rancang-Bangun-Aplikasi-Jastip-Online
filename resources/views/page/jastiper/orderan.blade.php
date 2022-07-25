@@ -52,7 +52,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->pesanan }} ({{ $data->jumlah }} {{ $data->satuan }}) - {{ $data->deskripsi }}</td>
-                                <td></td>
+                                <td> </td>
                                 <td>{{ $data->customer->alamat }}</td>
                                 <td>{{ $data->kurir }}</td>
                                 <td>{{ $data->customer->no_hp }}</td>

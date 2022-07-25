@@ -62,12 +62,15 @@
                                 <td>Rp{{ $order->jasa->harga_jasa }} - {{ $order->metode_pembayaran }} </td>
                                 <td>Rp{{ $order->total_harga }}</td>
                                 <td></td>
+                                @if ($order->status==='menunggu uang muka')
                                 <td class="">
-                                    <a href="" class="btn btn-primary mb-2 mr-2">Edit</a>
-                                    <form action="" method="POST">
-                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    <form action="{{ route('orderan.destroy', $order->id) }}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button class="btn btn-danger" type="submit">Hapus Pesanan</button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                         @empty
                         @endforelse

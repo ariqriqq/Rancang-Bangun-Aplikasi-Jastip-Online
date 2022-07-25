@@ -11,9 +11,17 @@
             @csrf
             <div class="input-box">
                 <input id="name" name="name"type="text" placeholder="Nama Lengkap" required>
+
             </div>
+            <input id="user_id" name="user_id"type="text" hidden>
             <div class="input-box">
-                <input type="email" name="email" placeholder="Alamat Email" required>
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                    placeholder="Alamat Email" required>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="input-box">
                 <input type="text" name="alamat" placeholder="Alamat Lengkap" required>
@@ -49,5 +57,3 @@
         </form>
     </div>
 @endsection
-
-
