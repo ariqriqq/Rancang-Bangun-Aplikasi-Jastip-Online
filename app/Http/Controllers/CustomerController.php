@@ -6,6 +6,8 @@ use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class CustomerController extends Controller
 {
@@ -17,6 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         $user = User::with('customer')->where('id', Auth::user()->id)->first();
+        // dd($user);
         return view('page.profile')->with([
             "user"=>$user,
         ]);
@@ -73,7 +76,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
         $user = User::with('customer')->findOrFail($id);
         $user->update([
             'name' => $request->name,
@@ -81,11 +83,13 @@ class CustomerController extends Controller
         ]);
         $customer = Customer::where('id', $user-> customer_id);
         $customer->update([
-
+            'user_id' => auth()->user()->id,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_ewallet' => $request->jenis_ewallet,
+            'nomor_ewallet' => $request->nomor_ewallet,
         ]);
         return redirect()->back();
     }

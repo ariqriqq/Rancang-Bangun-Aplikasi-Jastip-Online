@@ -52,6 +52,7 @@ class JastiperController extends Controller
         // dd($request);
 
         // dd(url('/'));
+        $user = User::with('customer')->where('id', Auth::user()->id)->first();
         $file = $request -> file('ktp');
         $ktp = $file -> move(('img'),$file->getClientOriginalName());
         $jastiper = Jastiper::create([
@@ -70,8 +71,7 @@ class JastiperController extends Controller
             'status' => 'Pending'
         ]);
 
-        $user = User::with('customer')->where('id', Auth::user()->id)->first();
-        return view('page.profile', ['user'=>$user]);
+        return view('page.jastiper.bejastiper');
     }
 
     /**

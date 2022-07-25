@@ -27,7 +27,11 @@ class Jasa extends Model
         return $this->belongsTo(Order::class);
     }
     
-
+    public function customer()
+    {
+        return $this->hasMany(Customer::class);
+    }
+    
     public function payment()
     {
         return $this->hasMany(payment::class);

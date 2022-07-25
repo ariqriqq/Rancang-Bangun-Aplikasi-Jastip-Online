@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Jastiper;
 use App\Models\User;
@@ -35,7 +36,7 @@ class OrderController extends Controller
     public function show()
     {
         // $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
-        $order=Order::with('jasa')->where('jasa_id', Auth::user()->jastiper_id)->get();
+        $order=Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->get();
 
         // $order=Order::with('customer')->get();
         // dd($order);
@@ -101,67 +102,10 @@ class OrderController extends Controller
         return redirect()->back();
     }
 
-
-    public function payment(Request $request)
+    public function destroy($id)
     {
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-jpdw45WzirMc8iq-U1r4TK8S';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
-
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            'item_details' => array(
-                [
-                    'id' => 'a01',
-                    'price' => $request->get('harga'),
-                    'quantity' => $request->get('jumlah'),
-                    'name' => $request->get('barang')
-                ],
-                [
-                    'id' => 'a02',
-                    'price' => 8000,
-                    'quantity' => 1,
-                    'name' => 'Jeruk'
-                ]
-
-            ),
-            'customer_details' => array(
-                'first_name' => $request->get('name'),
-                'last_name' => '',
-                'email' => $request->get('email'),
-                'phone' => $request->get('number'),
-            ),
-        );
-        // dd($params);
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        // return $snapToken;
-        return view('payment', ['snap_token' => $snapToken]);
-    }
-
-    public function payment_post(Request $request)
-    {
-        $json = json_decode($request->get('json'));
-        $order = new Order();
-        $order->status = $json->transaction_status;
-        $order->name = $request->get('name');
-        $order->email = $request->get('email');
-        $order->number = $request->get('number');
-        $order->transaction_id = $json->transaction_id;
-        $order->order_id = $json->order_id;
-        $order->gross_amount = $json->gross_amount;
-        $order->payment_type = $json->payment_type;
-        $order->payment_code = isset($json->payment_code) ? $json->payment_code : null;
-        $order->pdf_url = isset($json->pdf_url) ? $json->pdf_url : null;
-
-        return $order->save() ? redirect(url('/'))->with('alert-success', 'Order berhasil dibuat') : redirect(url('/'))->with('alert-failed', 'Terjadi kesalahan');
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->back();
     }
 }

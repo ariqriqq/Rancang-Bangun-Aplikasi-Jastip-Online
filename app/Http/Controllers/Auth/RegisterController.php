@@ -65,12 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+        // $user = User 
         $customer = Customer::create([
+            // 'user_id' => $user['alamat'],
+            // 'user_id' => $user->id,
             'alamat' => $data['alamat'],
             'no_hp' => $data['no_hp'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'tanggal_lahir' => $data['tanggal_lahir'],
+            'jenis_ewallet' => '-',
+            'nomor_ewallet' => '-',
 
         ]);
         return User::create([

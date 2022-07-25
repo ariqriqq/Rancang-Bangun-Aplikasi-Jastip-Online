@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\Jasa;
 use App\Models\Jastiper;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class JasaController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +16,24 @@ class JasaController extends Controller
      */
     public function index()
     {
-        $jasa = Jasa::with('jastiper')->get();
-        // dd($jasa);
-        return view('page.jastiper.bukajasa')->with([
-            'jasa' => $jasa,
-        ]);
+        {
+            $jastiper=Jastiper::with('user')->get();
+            // dd($jastiper);
+            return view('page.admin.jastiper')->with([
+                'jastiper'=>$jastiper,
+            ]);
+        }
     }
-
-    public function order()
+    public function customer()
     {
-        $jasa = Jasa::with('jastiper')->get();
-        // dd($jasa);
-        return view('page.customer.order')->with([
-            'jasa' => $jasa,
-        ]);
+        {
+            $user=User::with('customer')->get();
+            // dd($customer);
+            return view('page.admin.customer')->with([
+                'data'=>$user,
+            ]);
+        }
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -51,24 +51,10 @@ class JasaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request)
     {
-        // dd (Auth::user()->jastiper()->id);
-        // dd(auth()->user());
-        // dd($request);
-        $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
-        // dd($jastiper);
-        $jasa = Jasa::create([
-            'jastiper_id' => $jastiper->id,
-            'kota_jasa' => $request->kota_jasa,
-            'harga_jasa' => $request->harga_jasa,
-            'tanggal_tutup' => $request->tanggal_tutup
-        ]);
-
-        return view('page.home');
+        //
     }
-
 
     /**
      * Display the specified resource.
@@ -78,11 +64,7 @@ class JasaController extends Controller
      */
     public function show($id)
     {
-        $jasa = Jasa::with('jastiper')->findOrFail($id);
-        // dd($jasa);
-        return view('page.customer.form_order',[
-            'data'=>$jasa
-        ]);
+        //
     }
 
     /**
