@@ -65,7 +65,20 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-//
+        $customer = Customer::findOrFail($id);
+        return view('page.customer.ewallet')->with([
+            "customer"=>$customer,
+        ]);
+    }
+
+    public function update_ewallet(Request $request, $id)
+    {
+        $customer = Customer::findOrFail($id);
+        $customer->update([
+            'jenis_ewallet'=>$request->jenis_ewallet,
+            'nomor_ewallet'=>$request->nomor_ewallet,
+        ]);
+        return redirect('customer');
     }
 
     /**
@@ -88,8 +101,8 @@ class CustomerController extends Controller
             'no_hp' => $request->no_hp,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_ewallet' => $request->jenis_ewallet,
-            'nomor_ewallet' => $request->nomor_ewallet,
+            // 'jenis_ewallet' => $request->jenis_ewallet,
+            // 'nomor_ewallet' => $request->nomor_ewallet,
         ]);
         return redirect()->back();
     }

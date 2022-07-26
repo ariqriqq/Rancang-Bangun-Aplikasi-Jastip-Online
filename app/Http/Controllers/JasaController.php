@@ -118,4 +118,20 @@ class JasaController extends Controller
     {
         //
     }
+
+
+    public function search(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $jasa=Jasa::whereHas('jastiper',function($jastiper)use($request){
+            $jastiper->where([
+                ['kota_jasa','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ]);
+        })->get();
+        return view('page.customer.order')->with([
+            'jasa' => $jasa,
+        ]);
+    }
 }

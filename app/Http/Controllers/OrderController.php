@@ -108,4 +108,7 @@ class OrderController extends Controller
         $order->delete();
         return redirect()->back();
     }
+
+
+
 }

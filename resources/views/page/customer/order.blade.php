@@ -12,11 +12,15 @@
                     <div class="card-header">
                         <h4>Cari Info Jastiper</h4>
                     </div>
+                    <form class="d-flex mb-4" method="post" action="/order/cari">
+                        @method('POST')
+                        @csrf
                     <div class="card-body">
-                        <p class="card-text">Kota Jastiper</p>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <a href="#" class="btn btn-primary mt-3">Cari&nbsp;<i class="bi bi-search"></i></a>
+                        <h5 class="card-text">Kota Jastiper</h5>
+                        <input type="search" name="keyword" class="form-control" placeholder="Cari kota..">
+                        <button class="btn btn-primary mt-3" type="submit">Cari</button>
                     </div>
+                </form>
                 </div>
             </div>
             <div class="col-10" style="height: 100%">

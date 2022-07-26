@@ -38,14 +38,14 @@
                             {{-- <th>Id Pesanan</th> --}}
                             <th>Tanggal</th>
                             <th>Pesanan</th>
-                            <th>Status</th>
+                            <th>Status Uang Muka</th>
                             <th>Nama Jastiper</th>
                             <th>Kota</th>
                             <th>Expedisi</th>
                             <th>Uang Muka (Harga Jasa)</th>
                             <th>Total Harga Pesanan</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Status Pesanan</th>
+                            <th></th>
                         </tr>
 
                         @forelse($order as $order)
@@ -61,15 +61,21 @@
                                 <td>{{ $order->kurir }}</td>
                                 <td>Rp{{ $order->jasa->harga_jasa }} - {{ $order->metode_pembayaran }} </td>
                                 <td>Rp{{ $order->total_harga }}</td>
-                                <td></td>
-                                @if ($order->status==='menunggu uang muka')
-                                <td class="">
-                                    <form action="{{ route('orderan.destroy', $order->id) }}" method="POST">
-                                        @csrf
-                                        @method("DELETE")
-                                        <button class="btn btn-danger" type="submit">Hapus Pesanan</button>
-                                    </form>
-                                </td>
+                                @if ($order->total_harga!=null)
+                                <td><a href="/pembayaran">Menunggu Pembayaran</a> </td>
+                                @else
+                                <td>Menunggu Total Harga</td>
+                                @endif
+
+                                @if ($order->status === 'menunggu uang muka')
+                                    <td class="">
+                                        <form action="{{ route('orderan.destroy', $order->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit"><i
+                                                    class="fa-solid fa-trash-can"></i></button>
+                                        </form>
+                                    </td>
                                 @endif
                             </tr>
                         @empty

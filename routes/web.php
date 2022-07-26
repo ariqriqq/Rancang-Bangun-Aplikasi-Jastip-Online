@@ -30,6 +30,7 @@ Route::get('/payment', 'PaymentController@payment');
 Route::get('/data-jastiper', 'AdminController@index');
 Route::get('/data-customer', 'AdminController@customer');
 
+Route::post('/order/cari', 'JasaController@search')->middleware('auth');
 Route::get('/order', 'JasaController@order')->middleware('auth');
 Route::post('/verifikasi/{id}', 'JastiperController@form')->middleware('auth');
 
@@ -38,6 +39,7 @@ Route::get('/myorder','OrderController@index')->middleware('auth');
 Route::get('/orderan','OrderController@show')->middleware('auth');
 Route::post('/orderan','OrderController@store_order')->middleware('auth');
 Route::post('/orderan_update','OrderController@orderan_update')->middleware('auth');
+Route::post('/ewallet_update/{id}','CustomerController@update_ewallet')->middleware('auth');
 
 Route::post('/orderan','OrderController@update_status')->middleware('auth');
 

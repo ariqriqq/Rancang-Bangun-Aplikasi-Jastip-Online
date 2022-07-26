@@ -26,8 +26,8 @@
 
                                         <input id="user_id" name="user_id"type="text" value={{ auth()->user()->id }}
                                             required hidden>
-                                        <input name="jenis_ewallet" type="text" value={{ $user->customer->jenis_ewallet }} hidden>
-                                        <input name="nomor_ewallet" type="text" value={{ $user->customer->nomor_ewallet }} hidden>
+                                        {{-- <input name="jenis_ewallet" type="text" value={{ $user->customer->jenis_ewallet }} hidden>
+                                        <input name="nomor_ewallet" type="text" value={{ $user->customer->nomor_ewallet }} hidden> --}}
 
                                         <li class="fw-bold">Nama Lengkap</li>
                                         <input type="text" value="{{ $user->name }}" name="name"
@@ -42,14 +42,19 @@
                                     <div class="form-group ">
                                         <li class="fw-bold">Email</li>
                                         <input type="text" value="{{ $user->email }}" name="email"
-                                        class="form-control @error('email') is-invalid @enderror" required
-                                             autofocus >
-                                            @error('email')
+                                            class="form-control @error('email') is-invalid @enderror" required autofocus
+                                            disabled>
+                                        @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
+
+                                    <input type="text" value="{{ $user->email }}" name="email"
+                                        class="form-control @error('email') is-invalid @enderror" required hidden>
+
+
                                     <div class="form-group ">
                                         <li class="fw-bold">Alamat Lengkap</li>
                                         <div class="input-group">
@@ -139,42 +144,20 @@
                         </div>
                     </div>
                     <div class="pri_table_list mt-5">
-                        <h3>Akun Bank</h3>
+                        <h3>Akun E-Wallet</h3>
                         <ol>
-                            <form action="{{ route('customer.update', auth()->user()->id) }}" method="POST">
+                            <form action="{{ route('customer.edit', auth()->user()->customer->id) }}" method="GET">
                                 @csrf
-                                @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <input id="user_id" name="user_id"type="text" value={{ auth()->user()->id }}
-                                            required hidden>
-                                        <input name="name"type="text" value={{ $user->name }} hidden>
-                                        <input name="email"type="text" value={{ $user->email }} hidden>
-                                        <input name="no_hp" type="text" value={{ $user->customer->no_hp }} hidden>
-                                        <input name="alamat" type="text" value={{ $user->customer->alamat }} hidden>
-                                        <input name="jenis_kelamin" type="text"
-                                            value={{ $user->customer->jenis_kelamin }} hidden>
-                                        <input name="tanggal_lahir" type="date"
-                                            value={{ $user->customer->tanggal_lahir }} hidden>
-
-
                                         <li class="fw-bold">Jenis E-Wallet</li>
-                                        <select class="form-control" value="{{ $user->customer->jenis_ewallet }}"
-                                            name="jenis_ewallet">
-                                            <option
-                                                value="{{ $user->customer->jenis_ewallet === 'Dana' ? 'Dana' : 'Ovo' }}">
-                                                {{ $user->customer->jenis_ewallet === 'Dana' ? 'Dana' : 'Ovo' }}
-                                            </option>
-                                            <option
-                                                value="{{ $user->customer->jenis_ewallet === 'Dana' ? 'Ovo' : 'Dana' }}">
-                                                {{ $user->customer->jenis_ewallet === 'Dana' ? 'Ovo' : 'Dana' }}
-                                            </option>
-                                        </select>
+                                        <input type="text" name="jenis_ewallet"
+                                            value="{{ $user->customer->jenis_ewallet }}" class="form-control" disabled>
                                         <li class="fw-bold">Nomor E-Wallet</li>
                                         <input type="text" name="nomor_ewallet"
-                                            value="{{ $user->customer->nomor_ewallet }}" class="form-control">
+                                            value="{{ $user->customer->nomor_ewallet }}" class="form-control" disabled>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                                    <button type="submit" class="btn btn-primary mt-5">Edit Akun</button>
                                 </div>
                             </form>
                         </ol>
