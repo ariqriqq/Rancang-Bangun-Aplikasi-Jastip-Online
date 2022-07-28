@@ -22,9 +22,7 @@
                             href="/myorder">Pesanan
                             Saya</a>
                         <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
-                            href="/pembayaran">Pembayaran</a>
-                        <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
-                            href="/history">History Pemesanan</a>
+                            href="/riwayat-transaksi">Transaksi</a>
                     </div>
                 </div>
             </div>
@@ -61,10 +59,17 @@
                                 <td>{{ $order->kurir }}</td>
                                 <td>Rp{{ $order->jasa->harga_jasa }} - {{ $order->metode_pembayaran }} </td>
                                 <td>Rp{{ $order->total_harga }}</td>
-                                @if ($order->total_harga!=null)
-                                <td><a href="/pembayaran">Menunggu Pembayaran</a> </td>
+                                @if ($order->status === 'menunggu uang muka')
+                                    <td>Menunggu Uang Muka</td>
+                                @elseif ($order->total_harga != null)
+                                    <td>
+                                        <form action="/payment/{{ $order->id }}" method="GET">
+                                            @csrf
+                                            <button class="btn btn-secondary mb-1" type="submit">Pay!</button>
+                                        </form>
+                                    </td>
                                 @else
-                                <td>Menunggu Total Harga</td>
+                                    <td>Menunggu Total Harga</td>
                                 @endif
 
                                 @if ($order->status === 'menunggu uang muka')

@@ -22,7 +22,9 @@
                         class="far fa-file-alt"></i> <span>Pendaftaran
                         Jastiper</span></a></li>
             <li class=""><a href="/validasi-pembayaran"><i
-                        class="far fa-file-alt"></i> <span>Pembayaran Customer</span></a></li>
+                        class="far fa-file-alt"></i> <span>Validasi Uang Muka </span></a></li>
+            <li class=""><a href="/validasi-payment"><i
+                        class="far fa-file-alt"></i> <span>Data Pembayaran</span></a></li>
 
 
             <li class="menu-header">Pembayaran</li>

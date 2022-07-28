@@ -38,6 +38,7 @@
                             <th>Pesanan</th>
                             <th>Nama Jastiper</th>
                             <th>Total Pembayaran</th>
+                            <th>Status</th>
                             <th>Id Transaksi</th>
                             <th>Metode Pembayaran</th>
                             <th>Status Pembayaran</th>
@@ -54,16 +55,21 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td class="">
-                                    <button id="pay-button">Pay!</button>
+                                <td>
+
+                                    <form action="/payment/{{ $order->id }}" method="GET">
+                                        @csrf
+                                        <button class="btn btn-secondary mb-1" type="submit">Pay!</button>
+                                    </form>
                                 </td>
 
-                                    <form action="" id="submit_form" method="POST">
+
+                                    {{-- <form action="" id="submit_form" method="POST">
                                         @csrf
                                         <input type="hidden" name="json" id="json_callback">
 
-                                    </form>
-
+                                    </form> --}}
+{{--
                                     <script type="text/javascript">
                                         // For example trigger on button clicked, or any time you need
                                         var payButton = document.getElementById('pay-button');
@@ -100,7 +106,7 @@
                                             // alert(document.getElementById('json_callback').value)
                                             $('#submit_form').submit();
                                         }
-                                    </script>
+                                    </script> --}}
                             @empty
                         @endforelse
 

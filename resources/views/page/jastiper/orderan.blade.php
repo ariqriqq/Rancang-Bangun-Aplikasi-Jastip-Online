@@ -22,8 +22,6 @@
                                 href="/orderan">Pesanan
                                 Customer</a>
                             <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
-                                href="/pembayaran">Pembayaran</a>
-                            <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
                                 href="/history">History Pemesanan</a>
                         </div>
                     </div>

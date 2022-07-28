@@ -28,12 +28,12 @@
                         <p class="fw-bold">Kota Jastiper</p>
                         <div class="form-group">
                             <input type="text" name="kota_jasa" class="form-control"
-                                placeholder="Bandung/Jakarta/Indramayu" required>
+                                placeholder="Kota - Provinsi" required>
                         </div>
 
                         <p class="fw-bold mt-3">Harga Jasa</p>
                         <div class="form-group">
-                            <input type="text" name="harga_jasa" class="form-control" placeholder="Harga Jasa*" required>
+                            <input type="text" name="harga_jasa" class="form-control" placeholder="10000 (tanpa Rp)" required>
                         </div>
 
                         <p class="fw-bold mt-3">Tanggal Tutup Pemesanan Jasa</p>

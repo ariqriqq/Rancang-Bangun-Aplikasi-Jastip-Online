@@ -1,7 +1,7 @@
 @extends('user.style-daftar')
 
 @section('title')
-    <title>Daftar Akun</title>
+    <title>Login Akun</title>
 @endsection
 
 @section('content')
