@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Jastiper;
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,29 @@ class AdminController extends Controller
                 'jastiper'=>$jastiper,
             ]);
         }
+    }
+    public function payment()
+    {
+        {
+            $payment=Payment::with('order')->get();
+            // dd($payment);
+            return view('page.admin.payment')->with([
+                'payment'=>$payment,
+            ]);
+        }
+    }
+    public function payment_update(Request $request, $id)
+    {
+
+        $payment=Payment::with('order')->findOrFail($id);
+
+
+        $payment -> update([
+            // $json = json_decode($request->get('json'));
+            'status' => 'settlement',
+        ]);
+
+        return redirect()->back();
     }
     public function customer()
     {

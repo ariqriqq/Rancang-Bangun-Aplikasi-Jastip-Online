@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id');
-            $table->string('jastiper_id');
-            $table->string('customer_id');
+            $table->integer('order_id');
+            $table->integer('jasa_id');
+            $table->integer('jastiper_id');
+            $table->integer('customer_id');
+            $table->string('name');
             $table->string('status');
             $table->string('transaction_id');
             $table->string('payment_id');

@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Jastiper;
 use App\Models\User;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
 
-        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->get();
+        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->where('payment_id', null)->with('jastiper')->with('payment')->get();
 
         // $order = Order::with('jastiper')->findOrFail();
         // $order=Order::with('jastiper')->get();

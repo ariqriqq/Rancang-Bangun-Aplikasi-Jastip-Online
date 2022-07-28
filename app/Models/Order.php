@@ -12,6 +12,7 @@ class Order extends Model
         'jasa_id',
         'jastiper_id',
         'customer_id',
+        'payment_id',
         'status',
         'kurir',
         'metode_pembayaran',

@@ -75,6 +75,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
         $customer->update([
+            'user_id' => auth()->user()->id,
             'jenis_ewallet'=>$request->jenis_ewallet,
             'nomor_ewallet'=>$request->nomor_ewallet,
         ]);
