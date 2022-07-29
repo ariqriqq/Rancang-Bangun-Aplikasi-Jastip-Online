@@ -39,18 +39,23 @@
                             <div class="pri_table_list shadow-sm p-3 mb-5 bg-body rounded mt-3" style="border: rounded">
                                 <div class="form-group">
                                     @if ($payment->status === 'pending')
-                                    <li class="fw-bold">Belanja ({{ $payment->created_at }}) &nbsp; <span
-                                        class="badge text-bg-warning">{{ $payment->status }}</span> &nbsp;
-                                    PaymentID/{{ $payment->payment_id }} </li>
+                                        <li class="fw-bold">Belanja ({{ $payment->created_at }}) &nbsp; <span
+                                                class="badge text-bg-warning">{{ $payment->status }}</span> &nbsp;
+                                            PaymentID/{{ $payment->payment_id }} </li>
                                     @else
-                                    <li class="fw-bold">Belanja ({{ $payment->created_at }}) &nbsp; <span
-                                        class="badge text-bg-success">{{ $payment->status }}</span> &nbsp;
-                                    PaymentID/{{ $payment->payment_id }} </li>
+                                        <li class="fw-bold">Belanja ({{ $payment->created_at }}) &nbsp; <span
+                                                class="badge text-bg-success">{{ $payment->status }} / lunas</span> &nbsp;
+                                            PaymentID/{{ $payment->payment_id }} </li>
                                     @endif
 
-                                    <li class="fw-bold">Jastiper : {{ $payment->jastiper->nama_jastiper }}</li>
+                                    <li class="fw-bold">Jastiper : {{ $payment->jastiper->nama_jastiper }} -
+                                        ({{ $payment->jasa->kota_jasa }}) - {{ $payment->jastiper->no_hp_jastiper }}</li>
                                     <li class="fw-bold">{{ $payment->order->pesanan }} ({{ $payment->order->jumlah }}
                                         {{ $payment->order->satuan }}) - {{ $payment->order->deskripsi }}</li>
+                                    <li class="fw-bold">Kurir Pengiriman : {{ $payment->order->kurir }}</li>
+                                    <li class="fw-bold">Total Pembayaran : </li>
+                                    <li class="fw-bold"> HargaJasa/UangMuka Rp{{ $payment->jasa->harga_jasa }}</li>
+                                    <li class="fw-bold"> HargaPesanan Rp{{ $payment->order->total_harga }}</li>
 
                                 </div>
                             </div>

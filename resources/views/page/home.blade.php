@@ -178,15 +178,29 @@
                                 </a>
                                 <h4>OnTime</h4>
                                 <p>
-                                    Pemesanan yang dilakukan tepat waktu sesuai tanggal yang telah ditentukan oleh jastiper.
+                                    Pengiriman pesanan dilakukan tepat waktu sesuai tanggal pembayaran yang dilakukan.
                                 </p>
                             </div>
                         </div>
                         <!-- end about-details -->
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-12 col-sm-4 col-xs-12">
                     <!-- end about-details -->
+                    <div class=" about-move">
+                        <div class="services-details">
+                            <div class="single-services">
+                                <a class="services-icon" href="#">
+                                    <i class="fa-regular fa-money-bill-1"></i>
+                                </a>
+                                <h4>Payment</h4>
+                                <p>
+                                    Pesanan tidak dapat dibatalkan setelah membayar uang muka.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- end about-details -->
+                    </div>
                 </div>
             </div>
         </div>

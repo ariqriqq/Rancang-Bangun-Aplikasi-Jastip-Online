@@ -41,14 +41,40 @@
                                             <td class="font-weight-600">{{ $payment->gross_amount }}</td>
                                             <td class="font-weight-600">{{ $payment->payment_id }} </td>
 
-                                            <form method='POST' action='/payment-update/{{ $payment->id }}'>
-                                        @csrf
                                             @if ($payment->status === 'pending')
+                                                <form method='POST' action='/payment-update/{{ $payment->id }}'>
+                                                    @csrf
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary">Verifikasi</button>
+                                                    </td>
+                                                </form>
+                                            @elseif ($payment->order->payment_status === null)
+                                            <form method='POST' action='/payment-update/{{ $payment->id }}'>
+                                                @csrf
                                                 <td>
-                                                    <button type="submit" class="btn btn-primary">Verifikasi</button>
+                                                    <button type="submit" class="btn btn-primary">Konfirmasi</button>
                                                 </td>
-                                            @endif
                                             </form>
+                                            @else
+                                            <form action="/payment-confirm/{{ $payment->id }}"
+                                                method="post">
+                                                @csrf
+                                            {{-- @else --}}
+                                            <td>
+                                                    <a href="/payment_data/{{ $payment->id }}"class="btn btn-primary">Lihat Data</a>
+                                                </td>
+                                            </form>
+                                            @endif
+                                            {{-- <form action="/payment-confirm/{{ $payment->id }}"
+                                                method="post">
+                                                @csrf --}}
+                                            {{-- @else --}}
+                                            {{-- <td>
+                                                    <a href="/payment_data/{{ $payment->id }}"class="btn btn-primary">Lihat Data</a>
+                                                </td> --}}
+                                            {{-- </form> --}}
+
+
                                         </tr>
                                     @empty
                                     @endforelse

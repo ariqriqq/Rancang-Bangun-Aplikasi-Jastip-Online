@@ -36,11 +36,11 @@
 
                                     @forelse($order as $order)
                                         @csrf
-                                        @if ($order->status==='menunggu uang muka')
+                                        {{-- @if ($order->status==='menunggu uang muka') --}}
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td class="font-weight-600"></td>
-                                            <td class="font-weight-600">{{ $order->id }}</td>
+                                            <td class="font-weight-600">{{ $order->jastiper->nama_jastiper }}</td>
                                             <td class="font-weight-600">{{ $order->customer->alamat }}</td>
                                             <td><img width="200px" src="">{{ $order->metode_pembayaran }}</td>
                                             <td>{{ $order->customer->no_hp }}</td>
@@ -54,7 +54,7 @@
                                             </td>
                                             </form>
                                         </tr>
-                                        @endif
+                                        {{-- @endif --}}
                                     @empty
                                     @endforelse
                                 </table>

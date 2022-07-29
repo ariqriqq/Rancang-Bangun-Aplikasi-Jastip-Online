@@ -32,7 +32,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-md bg-light text-dark">
                         <tr>
-                            <th>No</th>
+                            {{-- <th>No</th> --}}
                             {{-- <th>Id Pesanan</th> --}}
                             <th>Tanggal</th>
                             <th>Pesanan</th>
@@ -49,7 +49,8 @@
                         @forelse($order as $order)
                             @csrf
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                @if ($order->payment_status === null)      
+                                {{-- <td>{{ $loop->iteration }}</td> --}}
                                 <td>{{ $order->created_at }}</td>
                                 <td>{{ $order->pesanan }} ({{ $order->jumlah }} {{ $order->satuan }}) -
                                     {{ $order->deskripsi }}</td>
@@ -59,6 +60,7 @@
                                 <td>{{ $order->kurir }}</td>
                                 <td>Rp{{ $order->jasa->harga_jasa }} - {{ $order->metode_pembayaran }} </td>
                                 <td>Rp{{ $order->total_harga }}</td>
+                          
                                 @if ($order->status === 'menunggu uang muka')
                                     <td>Menunggu Uang Muka</td>
                                 @elseif ($order->total_harga != null)
@@ -68,8 +70,6 @@
                                             <button class="btn btn-secondary mb-1" type="submit">Pay!</button>
                                         </form>
                                     </td>
-                                @else
-                                    <td>Menunggu Total Harga</td>
                                 @endif
 
                                 @if ($order->status === 'menunggu uang muka')
@@ -81,6 +81,7 @@
                                                     class="fa-solid fa-trash-can"></i></button>
                                         </form>
                                     </td>
+                                @endif
                                 @endif
                             </tr>
                         @empty

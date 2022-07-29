@@ -31,6 +31,9 @@ Route::post('/payment/{id}', 'PaymentController@payment_post');
 
 
 Route::post('/order/cari', 'JasaController@search')->middleware('auth');
+Route::post('/orderan/cari-status', 'OrderController@search')->middleware('auth');
+Route::post('/orderan/cari-idpesanan', 'OrderController@search_id')->middleware('auth');
+Route::post('/history-orderan/cari-idpesanan', 'PaymentController@search')->middleware('auth');
 Route::get('/order', 'JasaController@order')->middleware('auth');
 Route::post('/verifikasi/{id}', 'JastiperController@form')->middleware('auth');
 
@@ -42,7 +45,7 @@ Route::post('/orderan_update','OrderController@orderan_update')->middleware('aut
 Route::post('/ewallet_update/{id}','CustomerController@update_ewallet')->middleware('auth');
 
 Route::post('/orderan','OrderController@update_status')->middleware('auth');
-
+Route::get('/history-orderan','PaymentController@history_jastiper')->middleware('auth');
 
 Route::post('/form-order/{id}', 'JasaController@show')->middleware('auth');
 Route::get('/form_pembayaran/{id}', 'OrderController@form_pembayaran')->middleware('auth');
@@ -53,7 +56,9 @@ Route::post('/update_pembayaran/{id}', 'OrderController@orderan_update')->middle
 Route::get('/data-jastiper', 'AdminController@index');
 Route::get('/data-customer', 'AdminController@customer');
 Route::get('/validasi-payment', 'AdminController@payment');
+Route::get('/payment_data/{id}', 'AdminController@payment_data');
 Route::post('/payment-update/{id}', 'AdminController@payment_update');
+Route::post('/payment-confirm/{id}', 'AdminController@payment_confirm');
 Route::get('/pendaftaran', 'JastiperController@index');
 Route::post('/pendaftaran/{id}', 'JastiperController@update');
 Route::get('/validasi-pembayaran', 'OrderController@pembayaran_jasa');

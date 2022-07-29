@@ -37,7 +37,6 @@
                                     <li class="check"><i class="bi "></i><span>Nama Jastiper : {{ $jasa->jastiper->nama_jastiper }}
                                             {{ $jasa->uang_muka }}</span></li>
                                     <li class="check"><i class="bi bi-check"></i><span>Seluruh Pembayaran Pada Admin </span></li>
-                                    <li class="check"><i class="bi bi-check"></i><span>Multiple slider</span></li>
 
                                 </ol>
                                 <a href="/bukajasa/{{ $jasa->id }}" class="btn btn-secondary mb-3">Pesan Jasa</a>

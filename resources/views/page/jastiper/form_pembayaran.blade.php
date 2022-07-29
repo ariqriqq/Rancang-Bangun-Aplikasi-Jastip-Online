@@ -36,24 +36,16 @@
                                 hidden>
                         </div>
 
-                        <p class="fw-bold mt-3">Total Harga</p>
+                        <p class="fw-bold mt-3">Total Harga Pesanan (Sudah Termasuk Biaya Ekspedisi)</p>
                         <div class="form-group">
                             <input type="text" name="total_harga" class="form-control" value="{{ $data->total_harga }}" placeholder="10000 (tanpa Rp)" required>
                         </div>
 
+                        <button type="submit" class="btn btn-primary mt-5">Konfrimasi</button>
 
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="footer-content">
-                        <div class="footer-head">
-                            <p class="fw-bold">Nama Customer</p>
-                            <input type="text"  class="form-control" value=""  required disabled>
 
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-5">Konfrimasi</button>
-                </div>
             </div>
         </div>
     </form>
