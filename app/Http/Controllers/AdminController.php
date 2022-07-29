@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Jastiper;
+use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,15 +36,40 @@ class AdminController extends Controller
             ]);
         }
     }
+    public function payment_data($id)
+    {
+        {
+            $payment=Payment::with('order')->with('jasa')->with('jastiper')->findOrFail($id);
+            // dd($payment);
+            return view('page.admin.payment_data')->with([
+                'payment'=>$payment,
+            ]);
+        }
+    }
     public function payment_update(Request $request, $id)
     {
 
         $payment=Payment::with('order')->findOrFail($id);
-
-
         $payment -> update([
             // $json = json_decode($request->get('json'));
             'status' => 'settlement',
+        ]);
+        $order = Order::where('id', $payment->order_id);
+        $order->update([
+            'payment_status' => 'Lunas',
+        ]);
+
+        return redirect()->back();
+    }
+    public function payment_confirm(Request $request, $id)
+    {
+
+        $payment=Payment::with('order')->findOrFail($id);
+
+        $order = Order::where('id', $payment-> order_id);
+        $order->update([
+            // $json = json_decode($request->get('json'));
+            'payment_status' => 'Lunas',
         ]);
 
         return redirect()->back();

@@ -19,6 +19,30 @@ class PaymentController extends Controller
         ]);
     }
 
+    public function history_jastiper(Request $request)
+    {
+
+        $payment = Payment::with('order')->where('jastiper_id', Auth::user()->jastiper_id)->with('jastiper')->with('customer')->with('jasa')->get();
+        // dd($payment);
+        return view('page.jastiper.history')->with([
+            'payment' => $payment,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $payment=Payment::where([
+                ['order_id','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ])->get();
+        
+        return view('page.jastiper.history')->with([
+            'payment' => $payment,
+        ]);
+    }
+
 
     public function payment(Request $request, $id)
     {

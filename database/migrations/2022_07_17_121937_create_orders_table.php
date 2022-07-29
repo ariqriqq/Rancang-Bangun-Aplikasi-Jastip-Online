@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('jasa_id');
             $table->integer('jastiper_id');
             $table->integer('customer_id');
-            $table->integer('payment_id')->nullable();
+            $table->string('payment_status')->nullable();
             $table->string('status');
             $table->string('kurir');
             $table->string('metode_pembayaran');

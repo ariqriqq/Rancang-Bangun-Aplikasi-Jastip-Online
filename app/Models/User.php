@@ -54,6 +54,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+    public function jasa()
+    {
+        return $this->hasMany(Message::class);
+    }
 
     public function jastiper()
     {

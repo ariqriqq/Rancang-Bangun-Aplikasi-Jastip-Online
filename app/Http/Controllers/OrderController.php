@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -16,7 +17,7 @@ class OrderController extends Controller
     public function index()
     {
 
-        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->where('payment_id', null)->with('jastiper')->with('payment')->get();
+        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->with('payment')->get();
 
         // $order = Order::with('jastiper')->findOrFail();
         // $order=Order::with('jastiper')->get();
@@ -37,7 +38,8 @@ class OrderController extends Controller
     public function show()
     {
         // $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
-        $order=Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->get();
+        $order=Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->with('customer')->get();
+        // $user=User::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->get();
 
         // $order=Order::with('customer')->get();
         // dd($order);
@@ -46,6 +48,32 @@ class OrderController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $order=Order::where([
+                ['status','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ])->get();
+        
+        return view('page.jastiper.orderan')->with([
+            'data' => $order,
+        ]);
+    }
+    public function search_id(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $order=Order::where([
+                ['id','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ])->get();
+        
+        return view('page.jastiper.orderan')->with([
+            'data' => $order,
+        ]);
+    }
 
     public function form_pembayaran($id){
         $order=Order::with('jasa')->findOrFail($id);
