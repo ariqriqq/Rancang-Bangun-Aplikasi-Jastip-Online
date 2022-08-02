@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form action="/update_pembayaran/{{ $data->id }}" method="post">
+    <form action="/update_resi_paket/{{ $payment->id }}" method="post">
         @csrf
         <div class="container">
             <div class="row mt-5 mb-5">
@@ -24,23 +24,24 @@
                     @method('PUT') --}}
                 <div class="col-md-4 ">
                     <div class="footer-content">
-                        <p class="fw-bold">Pesanan</p>
+                        <p class="fw-bold">ID Pesanan</p>
                         <div class="form-group">
-                            <input type="text" class="form-control"
-                                value="{{ $data->pesanan }} ({{ $data->jumlah }} {{ $data->satuan }})" required disabled>
+                            <input type="text" class="form-control" value="{{ $payment->order->id }}" required disabled>
                         </div>
                         <p class="fw-bold">Kurir Expedisi</p>
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{ $data->kurir }}" required disabled>
+                            <input type="text" class="form-control" value="{{ $payment->order->kurir }}" required
+                                disabled>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" value="{{ $data->jasa_id }}" required hidden>
+                            <input type="text" class="form-control" value="{{ $payment->jasa_id }}" required hidden>
                         </div>
 
-                        <p class="fw-bold">Total Harga Pesanan (Sudah Termasuk Biaya Pengiriman)</p>
+                        <p class="fw-bold">No Resi Paket</p>
                         <div class="form-group">
-                            <input type="text" name="total_harga" class="form-control" value="{{ $data->total_harga }}"
-                                placeholder="10000 (tanpa Rp)" required>
+                            <input type="text" name="resi_paket" class="form-control"
+                                value="{{ $payment->order->resi_paket }}"
+                                placeholder="Tulis sesuai no resi pengiriman paket" required>
                         </div>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal"
@@ -59,7 +60,8 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        Data total pembayaran tidak bisa diubah setelah dikonfirmasi, apakah data pembayaran
+                                        No resi pengiriman paket tidak dapat diubah setelah dikonfirmasi, apakah data yang
+                                        diisi
                                         sudah benar?
                                     </div>
                                     <div class="modal-footer">

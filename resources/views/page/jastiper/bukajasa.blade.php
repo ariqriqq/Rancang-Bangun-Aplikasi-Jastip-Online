@@ -27,13 +27,14 @@
                     <div class="footer-content">
                         <p class="fw-bold">Kota Jastiper</p>
                         <div class="form-group">
-                            <input type="text" name="kota_jasa" class="form-control"
-                                placeholder="Kota - Provinsi" required>
+                            <input type="text" name="kota_jasa" class="form-control" placeholder="Kota - Provinsi"
+                                required>
                         </div>
 
                         <p class="fw-bold mt-3">Harga Jasa</p>
                         <div class="form-group">
-                            <input type="text" name="harga_jasa" class="form-control" placeholder="10000 (tanpa Rp)" required>
+                            <input type="text" name="harga_jasa" class="form-control" placeholder="10000 (tanpa Rp)"
+                                required>
                         </div>
 
                         <p class="fw-bold mt-3">Tanggal Tutup Pemesanan Jasa</p>
@@ -44,7 +45,7 @@
                         <button type="submit" class="btn btn-primary mt-5">Konfirmasi</button>
                     </div>
                 </div>
+            </div>
+        </div>
     </form>
-    </div>
-    </div>
 @endsection

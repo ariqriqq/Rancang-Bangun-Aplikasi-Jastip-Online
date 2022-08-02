@@ -12,9 +12,9 @@
                     <div class="card-header text-center">
                         <div class="form-group text-center">
                             <div class="">
-                                <img src="..." class="rounded" alt="...">
+                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar" >
                             </div>
-                            <label>Hi, {{ Auth()->user()->name }}</label>
+                            <label>Hi, {{ Auth()->user()->customer->name }}</label>
                         </div>
                     </div>
                     <div class="card-body" style=" padding:0">
@@ -23,6 +23,8 @@
                             Customer</a>
                         <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
                             href="/history-orderan">Pengiriman Pemesanan</a>
+                        <a type="button" class="btn btn-outline-secondary" style="width:100%; border-radius:0 0"
+                            href="/tagihan">Data Tagihan</a>
                     </div>
                 </div>
             </div>
@@ -46,49 +48,100 @@
                     </form>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-md bg-light text-dark">
+                    <table class="table table-bordered table-hover">
 
                         <tr>
                             <th>IDPesanan</th>
+                            <th>Customer</th>
                             <th>Tanggal</th>
                             <th>Pesanan</th>
                             <th>Expedisi</th>
                             <th>Alamat</th>
                             <th>No Hp</th>
-                            <th>Status</th>
-                            <th>Total Pembayaran</th>
+                            <th>Uang Muka</th>
+                            <th>Total Harga</th>
                             <th>Action</th>
                         </tr>
                         @forelse($data as $data)
                             @csrf
                             <tr>
-                                <td>{{ $data->id }}</td>
-                                <td>{{ $data->created_at }}</td>
-                                <td>{{ $data->pesanan }} ({{ $data->jumlah }} {{ $data->satuan }}) - {{ $data->deskripsi }}
-                                </td>
-                                <td>{{ $data->kurir }}</td>
-                                <td>{{ $data->customer->alamat }}</td>
-                                <td>{{ $data->customer->no_hp }}</td>
-                                <td>{{ $data->status }} (Rp{{ $data->jasa->harga_jasa }})</td>
-                                <td>Rp{{ $data->total_harga }}</td>
-                                <td class="">
+                                @if ($data->payment_status != 'Ditolak')
+                                    <td>{{ $data->id }}</td>
+                                    <td>{{ $data->customer->name }}</td>
+                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->pesanan }} ({{ $data->jumlah }} {{ $data->satuan }}) -
+                                        {{ $data->deskripsi }}
+                                    </td>
+                                    <td>{{ $data->kurir }}</td>
+                                    <td>{{ $data->customer->alamat }}</td>
+                                    <td>{{ $data->customer->no_hp }}</td>
                                     @if ($data->status === 'menunggu uang muka')
-                                <td></td>
-                            @elseif ($data->total_harga != null)
-                                <a href="/history-orderan">Lihat data pembayaran</a>
-                            @elseif ($data->status === 'Uang Muka Terverifikasi')
-                                <form action="/form_pembayaran/{{ $data->id }}" method="GET">
-                                    @csrf
-                                    <button class="btn btn-primary mb-1" type="submit">Pembayaran</button>
-                                </form>
-                        @endif
-                        {{-- <a href="{{ route('orderan') }}" class="btn btn-primary mb-2 mr-2">Edit</a> --}}
-                        {{-- <form action="" method="POST">
-                                        <button class="btn btn-danger" type="submit">Delete</button>
-                                    </form> --}}
-                        </td>
-                        </tr>
-                    @empty
+                                        <td>
+                                            <div class="badge badge-danger">{{ $data->status }}</div>
+                                            Rp{{ $data->jasa->harga_jasa }}
+                                        </td>
+                                    @else
+                                        <td>
+                                            <div class="badge badge-success">{{ $data->status }} </div>
+                                            Rp{{ $data->jasa->harga_jasa }}
+                                        </td>
+                                    @endif
+
+                                    <td>Rp{{ $data->total_harga }}</td>
+
+                                    @if ($data->status === 'menunggu uang muka')
+                                        <td>Menunggu uang muka</td>
+                                    @elseif ($data->payment_status != null)
+                                        <td>
+                                            <a href="/history-orderan">Lihat data pembayaran</a>
+                                        </td>
+                                    @elseif ($data->total_harga === null)
+                                        <td>
+                                            <form action="/form_pembayaran/{{ $data->id }}" method="GET">
+                                                @csrf
+                                                <button class="btn btn-primary mb-1" type="submit">Pembayaran</button>
+                                            </form>
+
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">
+                                                Tolak Pesanan
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Tolak Pesanan
+                                                            </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah yakin untuk menolak pesanan ini? Jika sudah di konfirmasi
+                                                            pesanan ini akan hilang dari data pesanan Anda
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <form action="/tolak_jasa/{{ $data->id }}" method='POST'>
+                                                                @csrf
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">Konfirmasi</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td>Menunggu pembayaran</td>
+                                    @endif
+                                @endif
+                            </tr>
+                        @empty
                         @endforelse
                     </table>
                 </div>
