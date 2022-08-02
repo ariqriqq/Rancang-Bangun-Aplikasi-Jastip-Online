@@ -19,7 +19,7 @@ class Payment extends Model
         'gross_amount',
         'payment_type',
         'payment_code',
-        'pdf_url'
+        'pdf_url',
     ];
 
 

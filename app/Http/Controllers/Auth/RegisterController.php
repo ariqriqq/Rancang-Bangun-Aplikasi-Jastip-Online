@@ -69,6 +69,7 @@ class RegisterController extends Controller
         $customer = Customer::create([
             // 'user_id' => $user['alamat'],
             // 'user_id' => $user->id,
+            'name' => $data['name'],
             'alamat' => $data['alamat'],
             'no_hp' => $data['no_hp'],
             'jenis_kelamin' => $data['jenis_kelamin'],
@@ -79,7 +80,7 @@ class RegisterController extends Controller
         ]);
         return User::create([
             'customer_id' => $customer->id,
-            'name' => $data['name'],
+            // 'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'user'

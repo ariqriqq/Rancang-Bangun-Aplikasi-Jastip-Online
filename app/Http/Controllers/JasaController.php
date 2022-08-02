@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Jasa;
 use App\Models\Jastiper;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,11 +27,16 @@ class JasaController extends Controller
 
     public function order()
     {
-        $jasa = Jasa::with('jastiper')->get();
+        $jasa = Jasa::with('jastiper')->orderBy('id', 'DESC')->get();
         // dd($jasa);
+        // if (Carbon::now()->diffInDays(Carbon::parse($jasa["tanggal_tutup"])) > now()) {
+        //     //cant comment
+        // }
+
         return view('page.customer.order')->with([
             'jasa' => $jasa,
         ]);
+
     }
 
 

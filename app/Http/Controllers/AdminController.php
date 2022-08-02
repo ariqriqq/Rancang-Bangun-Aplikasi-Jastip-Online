@@ -36,6 +36,16 @@ class AdminController extends Controller
             ]);
         }
     }
+    public function show_payment_data()
+    {
+        {
+            $payment=Payment::with('order')->with('jasa')->with('jastiper')->get();
+            // dd($payment);
+            return view('page.admin.show_payment_data')->with([
+                'payment'=>$payment,
+            ]);
+        }
+    }
     public function payment_data($id)
     {
         {
@@ -69,7 +79,20 @@ class AdminController extends Controller
         $order = Order::where('id', $payment-> order_id);
         $order->update([
             // $json = json_decode($request->get('json'));
-            'payment_status' => 'Lunas',
+            'status_tagihan' => 'Sudah dibayar',
+        ]);
+
+        return redirect()->back();
+    }
+    public function payment_transfer(Request $request, $id)
+    {
+
+        $payment=Payment::with('order')->findOrFail($id);
+
+        $order = Order::where('id', $payment-> order_id);
+        $order->update([
+            // $json = json_decode($request->get('json'));
+            'transfer_tagihan' => 'Lunas',
         ]);
 
         return redirect()->back();
@@ -82,6 +105,40 @@ class AdminController extends Controller
             return view('page.admin.customer')->with([
                 'data'=>$user,
             ]);
+        }
+    }
+
+    public function pembayaran_jasa()
+    {
+        $order=Order::with('jasa')->with('customer')->orderBy('id', 'DESC')->get();
+        // $user=User::where('customer_id',$order->customer_id)->get();
+        // dd($order);
+        return view('page.admin.pembayaran')->with([
+            'order'=>$order,
+        ]);
+    }
+
+    public function show_pembayaran_jasa()
+    {
+        {
+            $order=Order::where('payment_status','Ditolak')->with('jasa')->with('customer')->get();
+            // dd($payment);
+            return view('page.admin.refund')->with([
+                'order'=>$order,
+            ]);
+        }
+    }
+
+
+    public function update_refund($id)
+    {
+        {
+            $order = Order::findOrFail($id);
+            $order -> update([
+                'status_refund' => 'Sudah dibayar',
+
+            ]);
+            return redirect()->back();
         }
     }
 

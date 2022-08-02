@@ -21,6 +21,10 @@ class Order extends Model
         'satuan',
         'deskripsi',
         'total_harga',
+        'resi_paket',
+        'status_tagihan',
+        'status_refund'
+
     ];
 
     public function jastiper()

@@ -12,7 +12,7 @@ class PaymentController extends Controller
     public function index(Request $request)
     {
 
-        $payment = Payment::with('order')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->with('customer')->with('jasa')->get();
+        $payment = Payment::with('order')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->with('customer')->with('jasa')->orderBy('id', 'DESC')->get();
         // dd($payment);
         return view('page.customer.history')->with([
             'payment' => $payment,
@@ -22,12 +22,35 @@ class PaymentController extends Controller
     public function history_jastiper(Request $request)
     {
 
-        $payment = Payment::with('order')->where('jastiper_id', Auth::user()->jastiper_id)->with('jastiper')->with('customer')->with('jasa')->get();
+        $payment = Payment::with('order')->where('jastiper_id', Auth::user()->jastiper_id)->with('jastiper')->with('customer')->with('jasa')->orderBy('id', 'DESC')->get();
         // dd($payment);
         return view('page.jastiper.history')->with([
             'payment' => $payment,
         ]);
     }
+
+    public function resi_paket($id){
+        $payment=Payment::with('order')->with('customer')->with('jasa')->findOrFail($id);
+        // dd($payment);
+        return view('page.jastiper.resi_paket')->with([
+            'payment'=>$payment
+        ]);
+    }
+
+    public function update_resi_paket(Request $request, $id)
+    {
+        $payment=Payment::with('order')->findOrFail($id);
+
+        $order = Order::where('id', $payment->order_id);
+        $order->update([
+            // $json = json_decode($request->get('json'));
+            'resi_paket'=>$request->resi_paket,
+        ]);
+        // dd($payment);
+
+        return redirect('history-orderan');
+    }
+
 
     public function search(Request $request)
     {
@@ -37,7 +60,7 @@ class PaymentController extends Controller
                 ['order_id','like','%'.$request->keyword.'%'],
                 // ['status','like','%'.$request->keyword.'%']
             ])->get();
-        
+
         return view('page.jastiper.history')->with([
             'payment' => $payment,
         ]);
@@ -79,7 +102,7 @@ class PaymentController extends Controller
 
             ),
             'customer_details' => array(
-                 'first_name' => Auth::user()->name,
+                 'first_name' => auth()->user()->customer->name,
                  'last_name' => '',
                  'email' => Auth::user()->email,
                  'phone' => Auth::user()->customer->no_hp,
@@ -116,7 +139,7 @@ class PaymentController extends Controller
         $payment->jasa_id = $order->jasa_id;
         $payment->jastiper_id = $order->jastiper_id;
         $payment->customer_id = $order->customer_id;
-        $payment->name = auth()->user()->name;
+        $payment->name = auth()->user()->customer->name;
         $payment->status = $json->transaction_status;
         $payment->transaction_id = $json->transaction_id;
         $payment->payment_id = $json->order_id;

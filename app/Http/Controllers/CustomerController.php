@@ -92,12 +92,13 @@ class CustomerController extends Controller
     {
         $user = User::with('customer')->findOrFail($id);
         $user->update([
-            'name' => $request->name,
+            // 'name' => $request->name,
             'email' => $request->email,
         ]);
         $customer = Customer::where('id', $user-> customer_id);
         $customer->update([
             'user_id' => auth()->user()->id,
+            'name' => $request->name,
             'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'jenis_kelamin' => $request->jenis_kelamin,

@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('satuan');
             $table->string('deskripsi');
             $table->string('total_harga')->nullable();
+            $table->string('resi_paket')->nullable();
+            $table->string('status_tagihan')->nullable();
             $table->timestamps();
         });
     }
