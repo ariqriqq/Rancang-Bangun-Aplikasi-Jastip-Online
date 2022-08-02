@@ -1,8 +1,6 @@
 <footer class="main-footer">
     <div class="footer-left">
-      Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+      Tugas Akhir &copy; 2022 <div class="bullet"></div> Aplikasi Jasa Titip Beli Online
     </div>
-    <div class="footer-right">
-      2.3.0
-    </div>
+
   </footer>
