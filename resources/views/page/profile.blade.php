@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-8 col-lg-6">
+                <div class="col-8 col-md-8 col-lg-8">
                     <div class="pri_table_list">
                         <h3>Detail Akun</h3>
                         <ol>
@@ -30,7 +30,7 @@
                                         <input name="nomor_ewallet" type="text" value={{ $user->customer->nomor_ewallet }} hidden> --}}
 
                                         <li class="fw-bold">Nama Lengkap</li>
-                                        <input type="text" value="{{ $user->name }}" name="name"
+                                        <input type="text" value="{{ $user->customer->name }}" name="name"
                                             class="form-control  @error('name') is-invalid @enderror" required
                                             autocomplete="name" autofocus>
                                         @error('name')
@@ -137,9 +137,8 @@
                         <div class="card-body">
                             <div class="form-group text-center">
                                 <div class="">
-                                    <img src="..." class="rounded" alt="...">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar">
                                 </div>
-                                <li>Hi, {{ Auth()->user()->name }}</li>
                             </div>
                         </div>
                     </div>

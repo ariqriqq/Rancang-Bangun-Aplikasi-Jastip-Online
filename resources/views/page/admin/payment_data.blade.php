@@ -22,47 +22,47 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-hover">
                                     <tr>
                                         <th>Nama Jastiper</th>
-                                        <th>Total Pembayaran</th>
+                                        <th>IDPesanan</th>
+                                        <th>IDPembayaran</th>
+                                        <th>Uang Pesanan</th>
                                         <th>Uang Jasa</th>
-                                        <th>ID Pesanan</th>
                                         <th>Rekening</th>
                                         <th>Ewallet</th>
                                         <th>Status</th>
                                         <th>Action</th>
-
                                     </tr>
 
                                     <tr>
                                         <td class="font-weight-600">{{ $payment->jastiper->nama_jastiper }}</td>
-                                        <td class="font-weight-600">{{ $payment->gross_amount }}</td>
-                                        <td class="font-weight-600">{{ $payment->jasa->harga_jasa }},00</td>
+                                        <td class="font-weight-600">{{ $payment->order_id }} </td>
                                         <td class="font-weight-600">{{ $payment->payment_id }} </td>
+                                        <td class="font-weight-600">{{ $payment->order->total_harga }},00</td>
+                                        <td class="font-weight-600">{{ $payment->jasa->harga_jasa }},00</td>
                                         <td class="font-weight-600">{{ $payment->jastiper->nama_rekening }} -
                                             {{ $payment->jastiper->nomor_rekening }}
                                             ({{ $payment->jastiper->jenis_rekening }}) </td>
                                         <td class="font-weight-600">{{ $payment->jastiper->nama_ewallet }} -
                                             {{ $payment->jastiper->nomor_ewallet }}
                                             ({{ $payment->jastiper->jenis_ewallet }}) </td>
-                                        @if ($payment->order->payment_status === null)
+                                        @if ($payment->order->status_tagihan === null)
                                             <td class="font-weight-600">
-                                                <div class="badge badge-warning">Belum dibayar</div> 
+                                                <div class="badge badge-warning">Belum dibayar</div>
                                             </td>
-                                            <form action="/payment-confirm/{{ $payment->order->id }}" method="POST">
+                                            <form action="/payment-confirm/{{ $payment->id }}" method="POST">
                                                 @csrf
                                                 <td>
-                                                    <button type="submit" class="btn btn-primary">Konfirm
-                                                        Pembayaran</button>
+                                                    <button type="submit" class="btn btn-primary">Bayar</button>
+
                                                 </td>
                                             </form>
                                         @else
                                             <td class="font-weight-600">
-                                                <div class="badge badge-success">Sudah Dibayar</div> 
+                                                <div class="badge badge-success">{{ $payment->order->status_tagihan }}
                                             </td>
                                         @endif
-
 
                                     </tr>
 

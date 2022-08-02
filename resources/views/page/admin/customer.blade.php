@@ -37,21 +37,18 @@
                                         @csrf
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td class="font-weight-600">{{ $data->name }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->name }}</td>
                                             <td class="font-weight-600">{{ $data->customer->no_hp }}</td>
                                             <td class="font-weight-600">{{ $data->customer->alamat }}</td>
                                             <td class="font-weight-600">{{ $data->customer->jenis_kelamin }}</td>
                                             <td class="font-weight-600">{{ $data->customer->jenis_ewallet }} - {{ $data->customer->nomor_ewallet }}</td>
-
-                                            {{-- <form method='POST' action='/validasi-pembayaran/{{ $order->id }}'>
-                                        @csrf --}}
                                             <td>
                                                 <button type="submit" class="btn btn-primary">Lihat</button>
                                             </td>
-                                            {{-- </form> --}}
                                         </tr>
                                     @empty
                                     @endforelse
+
                                 </table>
                             </div>
                         </div>

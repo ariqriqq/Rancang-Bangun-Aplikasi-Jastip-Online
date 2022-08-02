@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-hover">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Akun</th>
@@ -44,7 +44,7 @@
                                             <td><img width="200px" src="{{ $jastiper->ktp }}"></td>
                                             <td>{{ $jastiper->no_hp_jastiper }}</td>
                                             <td>
-                                                <div class="badge badge-success">{{ $jastiper->status }}</div>
+                                                <div class="badge badge-warning">{{ $jastiper->status }}</div>
                                             </td>
                                             <form method='POST' action='/pendaftaran/{{ $jastiper->id }}'>
                                                 @csrf

@@ -22,22 +22,31 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-hover">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
+                                        <th>IDPesanan</th>
+                                        <th>Nama Customer</th>
                                         <th>Status</th>
                                         <th>Total Pembayaran</th>
-                                        <th>ID Pesanan</th>
+                                        <th>IDPembayaran</th>
                                         <th>Action</th>
 
                                     </tr>
                                     @forelse($payment as $payment)
                                         @csrf
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td class="font-weight-600">{{ $payment->order_id }}</td>
                                             <td class="font-weight-600">{{ $payment->name }}</td>
-                                            <td class="font-weight-600">{{ $payment->status }}</td>
+                                            @if ($payment->status === 'settlement')
+                                            <td class="font-weight-600">
+                                                <div class="badge badge-success">{{ $payment->status }}</div>
+                                             </td>
+                                            @else
+                                            <td class="font-weight-600">
+                                                <div class="badge badge-warning">{{ $payment->status }}</div>
+                                             </td>
+                                            @endif
+
                                             <td class="font-weight-600">{{ $payment->gross_amount }}</td>
                                             <td class="font-weight-600">{{ $payment->payment_id }} </td>
 
@@ -49,31 +58,21 @@
                                                     </td>
                                                 </form>
                                             @elseif ($payment->order->payment_status === null)
-                                            <form method='POST' action='/payment-update/{{ $payment->id }}'>
-                                                @csrf
-                                                <td>
-                                                    <button type="submit" class="btn btn-primary">Konfirmasi</button>
-                                                </td>
-                                            </form>
+                                                <form method='POST' action='/payment-update/{{ $payment->id }}'>
+                                                    @csrf
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary">Konfirmasi</button>
+                                                    </td>
+                                                </form>
                                             @else
-                                            <form action="/payment-confirm/{{ $payment->id }}"
-                                                method="post">
-                                                @csrf
-                                            {{-- @else --}}
-                                            <td>
-                                                    <a href="/payment_data/{{ $payment->id }}"class="btn btn-primary">Lihat Data</a>
-                                                </td>
-                                            </form>
+                                                <form action="/payment-confirm/{{ $payment->id }}" method="post">
+                                                    @csrf
+                                                    <td>
+                                                        <a href="/payment_data/{{ $payment->id }}"class="btn btn-primary">Lihat
+                                                            Tagihan</a>
+                                                    </td>
+                                                </form>
                                             @endif
-                                            {{-- <form action="/payment-confirm/{{ $payment->id }}"
-                                                method="post">
-                                                @csrf --}}
-                                            {{-- @else --}}
-                                            {{-- <td>
-                                                    <a href="/payment_data/{{ $payment->id }}"class="btn btn-primary">Lihat Data</a>
-                                                </td> --}}
-                                            {{-- </form> --}}
-
 
                                         </tr>
                                     @empty
