@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Jastiper - Jastipol</title>
+    <title>Admin - Jastipol</title>
 @endsection
 
 
@@ -16,13 +16,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Invoices</h4>
-                            <div class="card-header-action">
-                                <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
-                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-hover">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
@@ -30,8 +27,6 @@
                                         <th>Kota</th>
                                         <th>Nama Rekening</th>
                                         <th>Nama E-Wallet</th>
-                                        <th>Tagihan Jasa</th>
-
                                     </tr>
                                     @forelse($jastiper as $jastiper)
                                         @csrf
@@ -45,12 +40,6 @@
                                             <td class="font-weight-600">{{ $jastiper->nama_ewallet }} -
                                                 {{ $jastiper->nomor_ewallet }} ({{ $jastiper->jenis_ewallet }})</td>
 
-                                            {{-- <form method='POST' action='/validasi-pembayaran/{{ $order->id }}'>
-                                        @csrf --}}
-                                            <td>
-                                                <button type="submit" class="btn btn-primary">Lihat</button>
-                                            </td>
-                                            {{-- </form> --}}
                                         </tr>
                                     @empty
                                     @endforelse

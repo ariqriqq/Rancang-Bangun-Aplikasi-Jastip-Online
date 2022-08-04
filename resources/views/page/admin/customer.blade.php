@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Customer - Jastipol</title>
+    <title>Admin - Jastipol</title>
 @endsection
 
 
@@ -16,13 +16,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Invoices</h4>
-                            <div class="card-header-action">
-                                <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
-                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-hover">
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
@@ -30,21 +27,17 @@
                                         <th>Alamat</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Nama E-Wallet</th>
-                                        <th>Tagihan Jasa</th>
 
                                     </tr>
                                     @forelse($data as $data)
                                         @csrf
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td class="font-weight-600">{{ $data->customer->name }}</td>
-                                            <td class="font-weight-600">{{ $data->customer->no_hp }}</td>
-                                            <td class="font-weight-600">{{ $data->customer->alamat }}</td>
-                                            <td class="font-weight-600">{{ $data->customer->jenis_kelamin }}</td>
-                                            <td class="font-weight-600">{{ $data->customer->jenis_ewallet }} - {{ $data->customer->nomor_ewallet }}</td>
-                                            <td>
-                                                <button type="submit" class="btn btn-primary">Lihat</button>
-                                            </td>
+                                            <td class="font-weight-600">{{ $data->name }}</td>
+                                            <td class="font-weight-600">{{ $data->no_hp }}</td>
+                                            <td class="font-weight-600">{{ $data->alamat }}</td>
+                                            <td class="font-weight-600">{{ $data->jenis_kelamin }}</td>
+                                            <td class="font-weight-600">{{ $data->jenis_ewallet }} - {{ $data->nomor_ewallet }}</td>
                                         </tr>
                                     @empty
                                     @endforelse

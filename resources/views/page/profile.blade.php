@@ -137,7 +137,7 @@
                         <div class="card-body">
                             <div class="form-group text-center">
                                 <div class="">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar">
+                                    <img style="width:72%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar">
                                 </div>
                             </div>
                         </div>
