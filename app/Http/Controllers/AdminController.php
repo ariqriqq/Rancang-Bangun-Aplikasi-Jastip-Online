@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Customer;
 use App\Models\Jastiper;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
+// use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 
 class AdminController extends Controller
 {
@@ -19,7 +23,7 @@ class AdminController extends Controller
     public function index()
     {
         {
-            $jastiper=Jastiper::with('user')->get();
+            $jastiper=Jastiper::with('user')->where('status', 'Terverifikasi')->get();
             // dd($jastiper);
             return view('page.admin.jastiper')->with([
                 'jastiper'=>$jastiper,
@@ -29,7 +33,7 @@ class AdminController extends Controller
     public function payment()
     {
         {
-            $payment=Payment::with('order')->get();
+            $payment=Payment::with('order')->orderBy('id', 'DESC')->get();
             // dd($payment);
             return view('page.admin.payment')->with([
                 'payment'=>$payment,
@@ -39,7 +43,7 @@ class AdminController extends Controller
     public function show_payment_data()
     {
         {
-            $payment=Payment::with('order')->with('jasa')->with('jastiper')->get();
+            $payment=Payment::with('order')->where('status', 'settlement')->with('jasa')->with('jastiper')->get();
             // dd($payment);
             return view('page.admin.show_payment_data')->with([
                 'payment'=>$payment,
@@ -100,10 +104,10 @@ class AdminController extends Controller
     public function customer()
     {
         {
-            $user=User::with('customer')->get();
+            $customer=Customer::get();
             // dd($customer);
             return view('page.admin.customer')->with([
-                'data'=>$user,
+                'data'=>$customer,
             ]);
         }
     }
@@ -158,9 +162,18 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function comment(Request $request)
     {
-        //
+        // dd($comment);
+        $request = Comment::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        ]);
+        Alert::success('Sip', 'Pesan berhasil dikirim');
+        // alert()->success('Sip','Pesan berhasil dikirim');
+        return view('page.home');
     }
 
     /**

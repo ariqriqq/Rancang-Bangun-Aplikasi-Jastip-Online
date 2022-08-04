@@ -106,6 +106,34 @@ class OrderController extends Controller
             'data' => $order,
         ]);
     }
+    public function search_id2(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $order=Order::where([
+                ['id','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ])->get();
+
+        return view('page.customer.myorder')->with([
+            'order' => $order,
+        ]);
+    }
+    public function search_name(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $order=Order::whereHas('jastiper',function($student)use($request){
+            $student->where([
+                ['nama_jastiper','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ]);
+        })->get();
+        return view('page.customer.myorder')->with([
+            'order' => $order,
+        ]);
+    }
+
 
     public function form_pembayaran($id){
         $order=Order::with('jasa')->findOrFail($id);

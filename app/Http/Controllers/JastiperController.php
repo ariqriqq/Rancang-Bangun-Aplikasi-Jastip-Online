@@ -119,6 +119,14 @@ class JastiperController extends Controller
         return redirect()->back();
     }
 
+    public function tolak($id)
+    {
+        $jastiper = Jastiper::findOrFail($id);
+        $jastiper -> delete();
+
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

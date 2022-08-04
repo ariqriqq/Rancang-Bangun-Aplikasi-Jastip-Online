@@ -65,6 +65,19 @@ class PaymentController extends Controller
             'payment' => $payment,
         ]);
     }
+    public function search2(Request $request)
+    {
+        // mencari data
+        $keyword = $request->keyword;
+        $payment=Payment::where([
+                ['order_id','like','%'.$request->keyword.'%'],
+                // ['status','like','%'.$request->keyword.'%']
+            ])->get();
+
+        return view('page.customer.history')->with([
+            'payment' => $payment,
+        ]);
+    }
 
 
     public function payment(Request $request, $id)
