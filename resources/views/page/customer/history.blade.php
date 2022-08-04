@@ -30,6 +30,13 @@
             </div>
             <div class="col-9 col-md-8 col-lg-8 position-relative" style="height: 100%">
                 <h3>Data Transaksi</h3>
+                <form class="d-flex col-6 mb-3" role="search" method="post" action="/riwayat-transaksi/cari-idpesanan">
+                    @method('POST')
+                    @csrf
+                    <input class="form-control me-2" type="search" name="keyword"
+                        placeholder="Cari berdasarkan IDPesanan..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
                 <div class="pri_table_list">
                     <ol>
                         <li>
