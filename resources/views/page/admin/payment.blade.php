@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Jastiper - Jastipol</title>
+    <title>Admin - Jastipol</title>
 @endsection
 
 
@@ -16,9 +16,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Data Pembayaran dengan Midtrans</h4>
-                            <div class="card-header-action">
-                                <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
-                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">

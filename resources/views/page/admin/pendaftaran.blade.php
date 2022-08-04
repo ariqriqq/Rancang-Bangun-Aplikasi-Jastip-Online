@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Pendaftaran Jastiper - Jastipol</title>
+    <title>Admin - Jastipol</title>
 @endsection
 
 @section('content')
@@ -14,10 +14,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Invoices</h4>
-                            <div class="card-header-action">
-                                <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
-                            </div>
+                            <h4>Data Pendaftaran Jastiper</h4>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -33,27 +30,31 @@
                                         <th>Action</th>
                                     </tr>
                                     @forelse($jastiper as $jastiper)
-                                    @csrf
-                                    @if ($jastiper->status==='Pending')
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td class="font-weight-600">{{ $jastiper->nama_jastiper }}</td>
-                                            <td class="font-weight-600">{{ $jastiper->nama_jastiper }}</td>
-                                            <td class="font-weight-600">
-                                                {{ $jastiper->alamat_jastiper }}, {{ $jastiper->kota_jastiper }}, </td>
-                                            <td><img width="200px" src="{{ $jastiper->ktp }}"></td>
-                                            <td>{{ $jastiper->no_hp_jastiper }}</td>
-                                            <td>
-                                                <div class="badge badge-warning">{{ $jastiper->status }}</div>
-                                            </td>
-                                            <form method='POST' action='/pendaftaran/{{ $jastiper->id }}'>
-                                                @csrf
+                                        @csrf
+                                        @if ($jastiper->status === 'Pending')
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td class="font-weight-600">{{ $jastiper->nama_jastiper }}</td>
+                                                <td class="font-weight-600">{{ $jastiper->nama_jastiper }}</td>
+                                                <td class="font-weight-600">
+                                                    {{ $jastiper->alamat_jastiper }}, {{ $jastiper->kota_jastiper }}, </td>
+                                                <td><img width="200px" src="{{ $jastiper->ktp }}"></td>
+                                                <td>{{ $jastiper->no_hp_jastiper }}</td>
                                                 <td>
-                                                    <button type="submit" class="btn btn-primary">Verifikasi</button>
+                                                    <div class="badge badge-warning">{{ $jastiper->status }}</div>
                                                 </td>
-                                            </form>
-                                        </tr>
-                                    @endif
+                                                <td>
+                                                    <form method='POST' action='/pendaftaran/{{ $jastiper->id }}'>
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">Verifikasi</button>
+                                                    </form>
+                                                    <form method='POST' action='/tolak/{{ $jastiper->id }}'>
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger mt-3">Tolak</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @empty
                                     @endforelse
                                 </table>

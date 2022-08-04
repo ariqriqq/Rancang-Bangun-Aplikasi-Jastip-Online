@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Ecommerce Dashboard - Jastipol</title>
+    <title>Admin - Jastipol</title>
 @endsection
 
 

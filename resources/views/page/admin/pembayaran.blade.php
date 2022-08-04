@@ -1,7 +1,7 @@
 @extends('admin.index')
 
 @section('title')
-    <title>Ecommerce Dashboard - Jastipol</title>
+    <title>Admin - Jastipol</title>
 @endsection
 
 
@@ -9,16 +9,13 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Verifikasi Pembayaran</h1>
+                <h1>Pembayaran Uang Muka</h1>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Invoices</h4>
-                            <div class="card-header-action">
-                                <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
-                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
