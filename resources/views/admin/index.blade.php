@@ -6,6 +6,7 @@
 
 
   @include('admin.style')
+  @include('admin.scripts')
 
   @yield("title")
 
@@ -19,8 +20,7 @@
         @include('admin.sidebar')
         @yield("content")
         @include('admin.footer')
-        @include('admin.scripts')
-    
+
 
     </div>
   </div>
