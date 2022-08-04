@@ -30,23 +30,7 @@
             </div>
             <div class="col-9" style="height: 100%">
                 <h4>Tagihan Pembayaran</h4>
-                <div class="d-flex">
-                    <form class="d-flex col-5 mb-3" role="search" method="post" action="/orderan/cari-idpesanan">
-                        @method('POST')
-                        @csrf
-                        <input class="form-control me-2" type="search" name="keyword"
-                            placeholder="Cari berdasarkan IDPesanan..." aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <form class="d-flex col-5 mb-3" role="search" method="post" action="/orderan/cari-status">
-                        @method('POST')
-                        @csrf
-                        <input class="form-control me-2" type="search" name="keyword"
-                            placeholder="Cari berdasarkan Status..." aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
 
