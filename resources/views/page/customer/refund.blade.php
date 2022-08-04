@@ -12,7 +12,8 @@
                     <div class="card-header text-center">
                         <div class="form-group text-center">
                             <div class="">
-                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar" >
+                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                    class="rounded" alt="avatar">
                             </div>
                             <label>Hi, {{ Auth()->user()->customer->name }}</label>
                         </div>
@@ -29,6 +30,8 @@
             </div>
             <div class="col-9" style="height: 100%">
                 <h4>Data Refund Transaksi</h4>
+                <div class="mb-3"><a href="/customer" >Pastikan data E-Wallet sudah benar</a></div>
+
                 {{-- <div class="d-flex">
                     <form class="d-flex col-5 mb-3" role="search" method="post" action="/orderan/cari-idpesanan">
                         @method('POST')

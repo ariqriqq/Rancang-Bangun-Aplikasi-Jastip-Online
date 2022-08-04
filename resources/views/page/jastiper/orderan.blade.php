@@ -43,7 +43,7 @@
                         @method('POST')
                         @csrf
                         <input class="form-control me-2" type="search" name="keyword"
-                            placeholder="Cari berdasarkan Status..." aria-label="Search">
+                            placeholder="Cari berdasarkan Status Uang Muka..." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>

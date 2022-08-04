@@ -1,13 +1,13 @@
 @extends('user.index')
 
 @section('title')
-    <title>Buka Jasa</title>
+    <title>Profile - E-Wallet</title>
 @endsection
 
 @section('content')
 
     <div class="text-center mt-2 mb-4">
-        <h3 class="shadow-sm p-3 mb-5 bg-body rounded">Buka Jasa Titip Sekarang</h3>
+        <h3 class="shadow-sm p-3 mb-5 bg-body rounded">Data E-Wallet</h3>
     </div>
     <form action="/ewallet_update/{{ $customer->id }}" method="POST">
         @csrf
