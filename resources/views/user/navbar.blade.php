@@ -9,35 +9,61 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="/"><i style="font-size: 15px;"
-                            class="pe-1 fa-solid fa-house-chimney"></i>Beranda</a></li>
+                <li class=""><a class="nav-link scrollto" href="/"><i style="font-size: 15px;"
+                            class="pe-1 fa-solid fa-house-chimney {{ Request::is('/') ? 'active' : '' }}"></i>Beranda</a>
+                </li>
                 <li><a class="nav-link scrollto" href="/order"><i style="font-size: 15px;"
-                            class="pe-2 fa-solid fa-cart-plus"></i>Pesan Jasa</a></li>
-                @if (auth()->user()->jastiper_id != null)
-                    <li class="dropdown"><a href="#"><span>Pesanan</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="/myorder">Pesanan Saya</a></li>
-                            @if (auth()->user())
-                                @if (auth()->user()->role === 'jastiper')
-                                    <li><a href="/orderan">Pesanan Customer</a></li>
+                            class="pe-2 fa-solid fa-cart-plus {{ Request::is('order') ? 'active' : '' }}"></i>Pesan
+                        Jasa</a></li>
+                @if (auth()->user())
+                    @if (auth()->user()->jastiper_id != null)
+                        <li class="dropdown "><a href="#"><span>Pesanan</span> <i
+                                    class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="/myorder">Pesanan Saya</a></li>
+                                @if (auth()->user())
+                                    @if (auth()->user()->role === 'jastiper')
+                                        <li><a href="/orderan">Pesanan Customer</a></li>
+                                    @endif
                                 @endif
-                            @endif
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a class="nav-link scrollto" href="/myorder"><i style="font-size: 15px;"
+                                    class="pe-2 fa-solid fa-cart-shopping"></i>Pesanan Saya</a></li>
+                    @endif
                 @else
                     <li><a class="nav-link scrollto" href="/myorder"><i style="font-size: 15px;"
                                 class="pe-2 fa-solid fa-cart-shopping"></i>Pesanan Saya</a></li>
                 @endif
 
-
-                @if (auth()->user())
-                    @if (auth()->user()->role === 'user')
+                {{-- @if (auth()->user())
+                    @if (auth()->user()->role = 'jastiper')
+                        <li class=""><a class="nav-link scrollto " href="/bukajasa"><i style="font-size: 15px;"
+                                    class="pe-2 fa-solid fa-handshake fa-xl {{ Request::is('bukajasa') ? 'active' : '' }}"></i>Buka
+                                Jasa</a></li>
+                    @else
                         <li><a class="nav-link scrollto " href="/bejastiper"><i style="font-size: 15px;"
                                     class="pe-2 fas fa-people-carry "></i>Daftar Jastiper</a>
                         </li>
+                    @endif
+                @else
+                    <li><a class="nav-link scrollto " href="/bejastiper"><i style="font-size: 15px;"
+                                class="pe-2 fas fa-people-carry "></i>Daftar Jastiper</a>
+                    </li>
+                @endif --}}
+
+
+                @if (auth()->user())
+                    @if (auth()->user()->role === 'jastiper')
+                        <li class=""><a class="nav-link scrollto " href="/bukajasa"><i style="font-size: 15px;"
+                                    class="pe-2 fa-solid fa-handshake fa-xl {{ Request::is('bukajasa') ? 'active' : '' }}"></i>Buka
+                                Jasa</a>
+                        </li>
                     @else
-                        <li><a class="nav-link scrollto " href="/bukajasa"><i style="font-size: 15px;"
-                                    class="pe-2 fa-solid fa-handshake fa-xl "></i>Buka Jasa</a></li>
+                        <li><a class="nav-link scrollto " href="/bejastiper"><i style="font-size: 15px;"
+                                    class="pe-2 fas fa-people-carry "></i>Daftar Jastiper</a>
+                        </li>
                     @endif
 
                     <li class="dropdown"><a href="#"><span>Hi, {{ Auth()->user()->customer->name }}</span> <i
@@ -61,6 +87,9 @@
                         </ul>
                     </li>
                 @else
+                    <li><a class="nav-link scrollto " href="/bejastiper"><i style="font-size: 15px;"
+                                class="pe-2 fas fa-people-carry "></i>Daftar Jastiper</a>
+                    </li>
                     <li><a class="nav-link scrollto" href="/login"><i style="font-size: 15px;"
                                 class="pe-2 fa-solid fa-user"></i>Login</a></li>
                     <a class="button" href="/daftar">Register</a>
