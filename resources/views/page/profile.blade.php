@@ -159,7 +159,7 @@
                                         <input type="text" name="nomor_ewallet"
                                             value="{{ $user->customer->nomor_ewallet }}" class="form-control" disabled>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-5">Edit Akun</button>
+                                    <button type="submit" class="btn btn-primary mt-1">Edit Akun</button>
                                 </div>
                             </form>
                         </ol>
