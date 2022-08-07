@@ -58,10 +58,8 @@ Route::get('/resi_paket/{id}', 'PaymentController@resi_paket')->middleware('auth
 Route::post('/update_resi_paket/{id}', 'PaymentController@update_resi_paket')->middleware('auth');
 Route::post('/update_pembayaran/{id}', 'OrderController@orderan_update')->middleware('auth');
 Route::get('/refund', 'OrderController@refund')->middleware('auth');
-// Route::get('/password', 'PasswordController@ganti_password')->name('user.password.edit')->middleware('auth');
 Route::get('password','CustomerController@ganti_password')->name('user.password.edit')->middleware('auth');
 Route::patch('password','CustomerController@update_ganti_password')->name('user.password.update')->middleware('auth');
-// });
 
 
 Route::middleware(['auth', 'role:user'])->group(function () {

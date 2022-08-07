@@ -26,6 +26,7 @@ class CustomerController extends Controller
             "user" => $user,
         ]);
     }
+
     public function ganti_password()
     {
         $user = User::with('customer')->where('id', Auth::user()->id)->first();
@@ -34,17 +35,7 @@ class CustomerController extends Controller
             "user" => $user,
         ]);
     }
-    // public function update_ganti_password(Request $request, $id)
-    // {
 
-    //     $user = User::with('customer')->findOrFail($id);
-    //     // $user->update([
-    //     $request->user()->update([
-    //         'password' => Hash::make($request->gett('password')),
-    //     ]);
-    //     // Alert::success('Password berhasil diganti');
-    //     return redirect('customer');
-    // }
     public function update_ganti_password(UpdatePasswordRequest $request)
     {
         $request->user()->update([
