@@ -18,16 +18,11 @@ class OrderController extends Controller
 
     public function index()
     {
-
-        $order=Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->with('payment')->orderBy('id', 'DESC')->get();
-
-        // $order = Order::with('jastiper')->findOrFail();
-        // $order=Order::with('jastiper')->get();
-        // dd($order);
-        $kode = rand(1,100);
+        $order = Order::with('jasa')->where('customer_id', Auth::user()->customer_id)->with('jastiper')->with('payment')->orderBy('id', 'DESC')->get();
+        $kode = rand(1, 100);
         return view('page.customer.myorder')->with([
-            'order'=>$order,
-            'kode' =>$kode,
+            'order' => $order,
+            'kode' => $kode,
         ]);
     }
 
@@ -41,23 +36,23 @@ class OrderController extends Controller
 
     public function uang_muka($id)
     {
-        $order=Order::with('jasa')->findOrFail($id);
-        $kode = rand(1,100);
+        $order = Order::with('jasa')->findOrFail($id);
+        $kode = rand(1, 100);
 
         return view('page.customer.uang_muka')->with([
-            'order'=>$order,
-            'kode'=>$kode,
+            'order' => $order,
+            'kode' => $kode,
         ]);
     }
 
     public function update_uang_muka(Request $request, $id)
     {
         $order = Order::with('jasa')->findOrFail($id);
-        $kode = rand(1,100);
-        $uang_muka = $order->jasa->harga_jasa+$kode;
+        $kode = rand(1, 100);
+        $uang_muka = $order->jasa->harga_jasa + $kode;
         // dd($order);
         $order->update([
-            'uang_muka'=>$uang_muka,
+            'uang_muka' => $uang_muka,
         ]);
         return redirect('myorder');
     }
@@ -65,24 +60,18 @@ class OrderController extends Controller
 
     public function show()
     {
-        // $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
-        $order=Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->with('customer')->orderBy('id', 'DESC')->get();
-        // $user=User::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->get();
-
-        // $order=Order::with('customer')->get();
-        // dd($order);
-        return view('page.jastiper.orderan',[
-            'data'=>$order
+        $order = Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->with('customer')->orderBy('id', 'DESC')->get();
+        return view('page.jastiper.orderan', [
+            'data' => $order
         ]);
     }
 
     public function refund()
-    {
-        {
-            $order=Order::where('payment_status','Ditolak')->where('customer_id', Auth::user()->customer_id)->with('jasa')->with('customer')->orderBy('id', 'DESC')->get();
+    { {
+            $order = Order::where('payment_status', 'Ditolak')->where('customer_id', Auth::user()->customer_id)->with('jasa')->with('customer')->orderBy('id', 'DESC')->get();
             // dd($payment);
             return view('page.customer.refund')->with([
-                'order'=>$order,
+                'order' => $order,
             ]);
         }
     }
@@ -91,7 +80,7 @@ class OrderController extends Controller
     public function tolak_jasa($id)
     {
         $order = Order::findOrFail($id);
-        $order -> update([
+        $order->update([
             'payment_status' => 'Ditolak',
 
         ]);
@@ -101,11 +90,11 @@ class OrderController extends Controller
 
     public function show_tagihan()
     {
-        $order=Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->with('customer')->orderBy('id', 'DESC')->get();
+        $order = Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->with('customer')->orderBy('id', 'DESC')->get();
 
         // dd($order);
-        return view('page.jastiper.tagihan',[
-            'data'=>$order
+        return view('page.jastiper.tagihan', [
+            'data' => $order
         ]);
     }
 
@@ -113,11 +102,9 @@ class OrderController extends Controller
     {
         // mencari data
         $keyword = $request->keyword;
-        $order=Order::where([
-                ['status','like','%'.$request->keyword.'%'],
-                // ['status','like','%'.$request->keyword.'%']
-            ])->get();
-
+        $order = Order::where([
+            ['status', 'like', '%' . $request->keyword . '%'],
+        ])->get();
         return view('page.jastiper.orderan')->with([
             'data' => $order,
         ]);
@@ -126,11 +113,9 @@ class OrderController extends Controller
     {
         // mencari data
         $keyword = $request->keyword;
-        $order=Order::where([
-                ['id','like','%'.$request->keyword.'%'],
-                // ['status','like','%'.$request->keyword.'%']
-            ])->get();
-
+        $order = Order::where([
+            ['id', 'like', '%' . $request->keyword . '%'],
+        ])->get();
         return view('page.jastiper.orderan')->with([
             'data' => $order,
         ]);
@@ -139,11 +124,9 @@ class OrderController extends Controller
     {
         // mencari data
         $keyword = $request->keyword;
-        $order=Order::where([
-                ['id','like','%'.$request->keyword.'%'],
-                // ['status','like','%'.$request->keyword.'%']
-            ])->get();
-
+        $order = Order::where([
+            ['id', 'like', '%' . $request->keyword . '%'],
+        ])->get();
         return view('page.customer.myorder')->with([
             'order' => $order,
         ]);
@@ -152,10 +135,9 @@ class OrderController extends Controller
     {
         // mencari data
         $keyword = $request->keyword;
-        $order=Order::whereHas('jastiper',function($student)use($request){
+        $order = Order::whereHas('jastiper', function ($student) use ($request) {
             $student->where([
-                ['nama_jastiper','like','%'.$request->keyword.'%'],
-                // ['status','like','%'.$request->keyword.'%']
+                ['nama_jastiper', 'like', '%' . $request->keyword . '%'],
             ]);
         })->get();
         return view('page.customer.myorder')->with([
@@ -164,27 +146,26 @@ class OrderController extends Controller
     }
 
 
-    public function form_pembayaran($id){
-        $order=Order::with('jasa')->findOrFail($id);
+    public function form_pembayaran($id)
+    {
+        $order = Order::with('jasa')->findOrFail($id);
         // dd($order);
         return view('page.jastiper.form_pembayaran')->with([
-            'data'=>$order
+            'data' => $order
         ]);
     }
 
     public function orderan_update(Request $request, $id)
     {
         $order = Order::findOrFail($id);
-        // dd($order);
         $order->update([
-            'total_harga'=>$request->total_harga,
+            'total_harga' => $request->total_harga,
         ]);
         return redirect('orderan');
     }
 
     public function store_order(Request $request)
     {
-        // dd($request);
         Order::create($request->all());
         return redirect('orderan');
     }
@@ -194,7 +175,7 @@ class OrderController extends Controller
     public function update_pembayaran_jasa($id)
     {
         $order = Order::findOrFail($id);
-        $order -> update([
+        $order->update([
             'status' => 'Uang Muka Terverifikasi',
         ]);
         return redirect()->back();
@@ -205,12 +186,8 @@ class OrderController extends Controller
 
     public function destroy($id)
     {
-        // $order = Order::findOrFail($id);
         Order::where('id', $id)->delete();
         Alert::success('Pesanan berhasil dihapus');
         return redirect()->back();
     }
-
-
-
 }

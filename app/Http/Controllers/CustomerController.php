@@ -124,8 +124,6 @@ class CustomerController extends Controller
             'no_hp' => $request->no_hp,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tanggal_lahir' => $request->tanggal_lahir,
-            // 'jenis_ewallet' => $request->jenis_ewallet,
-            // 'nomor_ewallet' => $request->nomor_ewallet,
         ]);
         return redirect()->back();
     }

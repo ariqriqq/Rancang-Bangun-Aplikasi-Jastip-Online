@@ -19,7 +19,6 @@ class JasaController extends Controller
     public function index()
     {
         $jasa = Jasa::with('jastiper')->get();
-        // dd($jasa);
         return view('page.jastiper.bukajasa')->with([
             'jasa' => $jasa,
         ]);
@@ -28,15 +27,9 @@ class JasaController extends Controller
     public function order()
     {
         $jasa = Jasa::with('jastiper')->orderBy('id', 'DESC')->get();
-        // dd($jasa);
-        // if (Carbon::now()->diffInDays(Carbon::parse($jasa["tanggal_tutup"])) > now()) {
-        //     //cant comment
-        // }
-
         return view('page.customer.order')->with([
             'jasa' => $jasa,
         ]);
-
     }
 
 
@@ -60,18 +53,13 @@ class JasaController extends Controller
 
     public function store(Request $request)
     {
-        // dd (Auth::user()->jastiper()->id);
-        // dd(auth()->user());
-        // dd($request);
         $jastiper = Jastiper::where('user_id', Auth::user()->id)->firstOrFail();
-        // dd($jastiper);
         $jasa = Jasa::create([
             'jastiper_id' => $jastiper->id,
             'kota_jasa' => $request->kota_jasa,
             'harga_jasa' => $request->harga_jasa,
             'tanggal_tutup' => $request->tanggal_tutup
         ]);
-
         return view('page.home');
     }
 
@@ -86,7 +74,6 @@ class JasaController extends Controller
     {
         $jasa = Jasa::with('jastiper')->findOrFail($id);
         $kode = rand(1,100);
-        // dd($jasa);
         return view('page.customer.form_order',[
             'data'=>$jasa,
             'kode'=>$kode,
@@ -135,7 +122,6 @@ class JasaController extends Controller
         $jasa=Jasa::whereHas('jastiper',function($jastiper)use($request){
             $jastiper->where([
                 ['kota_jasa','like','%'.$request->keyword.'%'],
-                // ['status','like','%'.$request->keyword.'%']
             ]);
         })->get();
         return view('page.customer.order')->with([

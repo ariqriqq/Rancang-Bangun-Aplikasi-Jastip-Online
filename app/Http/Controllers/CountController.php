@@ -27,21 +27,8 @@ class CountController extends Controller
 
 
         $comment = Comment::orderBy('id', 'DESC')->get();
-        // if($comment->created_at <= Carbon::now()->addDays(7)->toDateTimeString()){
-        //     $comment = Comment::orderBy('id', 'DESC')->get();
-        // }
         return view('page.admin.gdashboard', compact(
-            'user',
-            'jastiper',
-            'tagihan',
-            'verifikasi',
-            'payment1',
-            'payment2',
-            'payment3',
-            'order1',
-            'order2',
-            'order3',
-
+            'user','jastiper','tagihan','verifikasi','payment1','payment2','payment3','order1','order2','order3',
         ))->with([
             'comment' => $comment,
         ]);

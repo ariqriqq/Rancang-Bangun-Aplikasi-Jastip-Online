@@ -16,19 +16,18 @@ class JastiperController extends Controller
      */
     public function index()
     {
-        $jastiper=Jastiper::with('user')->get();
+        $jastiper = Jastiper::with('user')->get();
         return view('page.admin.pendaftaran')->with([
-            'jastiper'=>$jastiper,
+            'jastiper' => $jastiper,
         ]);
     }
 
     public function form($id)
     {
-        $jastiper = Jastiper::where('status','pending')->where('user_id',$id)->first();
-            return view('page.jastiper.verifikasi')->with([
-                'jastiper' =>$jastiper,
-            ]);
-
+        $jastiper = Jastiper::where('status', 'pending')->where('user_id', $id)->first();
+        return view('page.jastiper.verifikasi')->with([
+            'jastiper' => $jastiper,
+        ]);
     }
 
     /**
@@ -38,7 +37,6 @@ class JastiperController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -49,17 +47,14 @@ class JastiperController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
-        // dd(url('/'));
         $user = User::with('customer')->where('id', Auth::user()->id)->first();
-        $file = $request -> file('ktp');
-        $ktp = $file -> move(('img'),$file->getClientOriginalName());
+        $file = $request->file('ktp');
+        $ktp = $file->move(('img'), $file->getClientOriginalName());
         $jastiper = Jastiper::create([
             'user_id' => auth()->user()->id,
             'nama_jastiper' => $request->nama_jastiper,
-            'no_hp_jastiper'=> $request->no_hp_jastiper,
-            'kota_jastiper'=> $request->kota_jastiper,
+            'no_hp_jastiper' => $request->no_hp_jastiper,
+            'kota_jastiper' => $request->kota_jastiper,
             'alamat_jastiper' => $request->alamat_jastiper,
             'ktp' => $ktp,
             'nama_rekening' => $request->nama_rekening,
@@ -70,7 +65,6 @@ class JastiperController extends Controller
             'nomor_ewallet' => $request->nomor_ewallet,
             'status' => 'Pending'
         ]);
-
         return view('page.jastiper.bejastiper');
     }
 
@@ -106,24 +100,21 @@ class JastiperController extends Controller
     public function update($id)
     {
         $jastiper = Jastiper::findOrFail($id);
-        $user = User::where('id',$jastiper->user_id);
-        $jastiper -> update([
+        $user = User::where('id', $jastiper->user_id);
+        $jastiper->update([
             'status' => 'Terverifikasi',
-
         ]);
-        $user -> update([
+        $user->update([
             'role' => 'jastiper',
             'jastiper_id' => $jastiper->id,
         ]);
-
         return redirect()->back();
     }
 
     public function tolak($id)
     {
         $jastiper = Jastiper::findOrFail($id);
-        $jastiper -> delete();
-
+        $jastiper->delete();
         return redirect()->back();
     }
 
