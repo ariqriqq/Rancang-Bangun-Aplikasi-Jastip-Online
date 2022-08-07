@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('jumlah');
             $table->string('satuan');
             $table->string('deskripsi');
+            $table->string('uang_muka')->nullable();
             $table->string('total_harga')->nullable();
             $table->string('resi_paket')->nullable();
             $table->string('status_tagihan')->nullable();

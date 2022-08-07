@@ -52,10 +52,15 @@ Route::post('/ewallet_update/{id}', 'CustomerController@update_ewallet')->middle
 
 Route::post('/form-order/{id}', 'JasaController@show')->middleware('auth');
 Route::get('/form_pembayaran/{id}', 'OrderController@form_pembayaran')->middleware('auth');
+Route::get('/uang_muka/{id}', 'OrderController@uang_muka')->middleware('auth');
+Route::post('/update_uang_muka/{id}', 'OrderController@update_uang_muka')->middleware('auth');
 Route::get('/resi_paket/{id}', 'PaymentController@resi_paket')->middleware('auth');
 Route::post('/update_resi_paket/{id}', 'PaymentController@update_resi_paket')->middleware('auth');
 Route::post('/update_pembayaran/{id}', 'OrderController@orderan_update')->middleware('auth');
 Route::get('/refund', 'OrderController@refund')->middleware('auth');
+// Route::get('/password', 'PasswordController@ganti_password')->name('user.password.edit')->middleware('auth');
+Route::get('password','CustomerController@ganti_password')->name('user.password.edit')->middleware('auth');
+Route::patch('password','CustomerController@update_ganti_password')->name('user.password.update')->middleware('auth');
 // });
 
 

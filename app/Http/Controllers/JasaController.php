@@ -85,9 +85,11 @@ class JasaController extends Controller
     public function show($id)
     {
         $jasa = Jasa::with('jastiper')->findOrFail($id);
+        $kode = rand(1,100);
         // dd($jasa);
         return view('page.customer.form_order',[
-            'data'=>$jasa
+            'data'=>$jasa,
+            'kode'=>$kode,
         ]);
     }
 

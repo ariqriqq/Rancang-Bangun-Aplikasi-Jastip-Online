@@ -20,6 +20,7 @@ class Order extends Model
         'jumlah',
         'satuan',
         'deskripsi',
+        'uang_muka',
         'total_harga',
         'resi_paket',
         'status_tagihan',

@@ -36,23 +36,40 @@
                                             <td>{{ $order->id }}</td>
                                             <td class="font-weight-600">{{ $order->customer->name }}</td>
                                             <td class="font-weight-600">{{ $order->jastiper->nama_jastiper }}</td>
-                                            <td><img width="200px" src="">{{ $order->metode_pembayaran }} (Rp{{ $order->jasa->harga_jasa }})</td>
+                                            <td><img width="200px" src="">{{ $order->metode_pembayaran }}
+                                                (Rp{{ $order->uang_muka }})
+                                            </td>
                                             <td>{{ $order->customer->no_hp }}</td>
                                             @if ($order->status === 'menunggu uang muka')
+                                                @if ($order->uang_muka != null)
+                                                    <td>
+                                                        <div class="badge badge-warning">Menunggu konfirmasi </div>
+                                                    </td>
+                                                    <td>
+                                                        <form method='POST'
+                                                            action='/validasi-pembayaran/{{ $order->id }}'>
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Verifikasi</button>
+                                                        </form>
+                                                    </td>
+                                                @else
                                                 <td>
-                                                    <div class="badge badge-danger">{{ $order->status }}</div>
+                                                    <div class="badge badge-danger">{{ $order->status }} </div>
                                                 </td>
-
-                                            <td>
-                                                <form method='POST' action='/validasi-pembayaran/{{ $order->id }}'>
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-primary">Verifikasi</button>
-                                                </form>
-                                            </td>
+                                                @endif
                                             @else
-                                                <td>
-                                                    <div class="badge badge-success">{{ $order->status }}</div>
-                                                </td>
+                                                @if ($order->payment_status == 'Ditolak')
+                                                    <td>
+                                                        <div class="badge badge-success">{{ $order->status }}
+                                                            <div class="badge badge-danger">{{ $order->payment_status }}
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <div class="badge badge-success">{{ $order->status }}</div>
+                                                @endif
                                             @endif
 
                                         </tr>

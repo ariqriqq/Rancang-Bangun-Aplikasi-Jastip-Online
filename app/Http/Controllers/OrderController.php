@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Jasa;
 use App\Models\Order;
 use App\Models\Jastiper;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -22,18 +24,44 @@ class OrderController extends Controller
         // $order = Order::with('jastiper')->findOrFail();
         // $order=Order::with('jastiper')->get();
         // dd($order);
+        $kode = rand(1,100);
         return view('page.customer.myorder')->with([
             'order'=>$order,
+            'kode' =>$kode,
         ]);
     }
 
 
     public function store(Request $request)
     {
-        // dd($request);
         Order::create($request->all());
+
         return redirect('myorder');
     }
+
+    public function uang_muka($id)
+    {
+        $order=Order::with('jasa')->findOrFail($id);
+        $kode = rand(1,100);
+
+        return view('page.customer.uang_muka')->with([
+            'order'=>$order,
+            'kode'=>$kode,
+        ]);
+    }
+
+    public function update_uang_muka(Request $request, $id)
+    {
+        $order = Order::with('jasa')->findOrFail($id);
+        $kode = rand(1,100);
+        $uang_muka = $order->jasa->harga_jasa+$kode;
+        // dd($order);
+        $order->update([
+            'uang_muka'=>$uang_muka,
+        ]);
+        return redirect('myorder');
+    }
+
 
     public function show()
     {
@@ -67,6 +95,7 @@ class OrderController extends Controller
             'payment_status' => 'Ditolak',
 
         ]);
+        Alert::success('Pesanan ditolak, dihapus dari daftar orderan');
         return redirect()->back();
     }
 
@@ -176,8 +205,9 @@ class OrderController extends Controller
 
     public function destroy($id)
     {
-        $order = Order::findOrFail($id);
-        $order->delete();
+        // $order = Order::findOrFail($id);
+        Order::where('id', $id)->delete();
+        Alert::success('Pesanan berhasil dihapus');
         return redirect()->back();
     }
 

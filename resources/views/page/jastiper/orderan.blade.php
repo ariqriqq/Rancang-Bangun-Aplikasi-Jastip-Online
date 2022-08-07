@@ -12,7 +12,8 @@
                     <div class="card-header text-center">
                         <div class="form-group text-center">
                             <div class="">
-                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar" >
+                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                    class="rounded" alt="avatar">
                             </div>
                             <label>Hi, {{ Auth()->user()->customer->name }}</label>
                         </div>
@@ -102,39 +103,10 @@
                                                 <button class="btn btn-primary mb-1" type="submit">Pembayaran</button>
                                             </form>
 
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                Tolak Pesanan
-                                            </button>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Tolak Pesanan
-                                                            </h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Apakah yakin untuk menolak pesanan ini? Jika sudah di konfirmasi
-                                                            pesanan ini akan hilang dari data pesanan Anda
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Batal</button>
-                                                            <form action="/tolak_jasa/{{ $data->id }}" method='POST'>
-                                                                @csrf
-                                                                <button type="submit"
-                                                                    class="btn btn-danger">Konfirmasi</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <form action="/tolak_jasa/{{ $data->id }}" method='POST'>
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger mt-3">Tolak Pesanan</button>
+                                            </form>
                                         </td>
                                     @else
                                         <td>Menunggu pembayaran</td>

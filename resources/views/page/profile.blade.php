@@ -26,8 +26,6 @@
 
                                         <input id="user_id" name="user_id"type="text" value={{ auth()->user()->id }}
                                             required hidden>
-                                        {{-- <input name="jenis_ewallet" type="text" value={{ $user->customer->jenis_ewallet }} hidden>
-                                        <input name="nomor_ewallet" type="text" value={{ $user->customer->nomor_ewallet }} hidden> --}}
 
                                         <li class="fw-bold">Nama Lengkap</li>
                                         <input type="text" value="{{ $user->customer->name }}" name="name"
@@ -136,13 +134,18 @@
                         <h3>Profile</h3>
                         <div class="card-body">
                             <div class="form-group text-center">
-                                <div class="">
-                                    <img style="width:72%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar">
+                                <div class="mb-3">
+                                    <img style="width:70%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar">
                                 </div>
+                                <form action="{{ route('user.password.edit') }}" method="get">
+                                @csrf
+                                <button class="submit">Ganti Password</button>
+                                {{-- <div><a href="">Ganti Password</a></div> --}}
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="pri_table_list mt-5">
+                    <div class="pri_table_list mt-3">
                         <h3>Akun E-Wallet</h3>
                         <ol>
                             <form action="{{ route('customer.edit', auth()->user()->customer->id) }}" method="GET">

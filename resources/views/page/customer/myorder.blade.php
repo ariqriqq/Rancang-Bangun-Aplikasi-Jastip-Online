@@ -12,7 +12,8 @@
                     <div class="card-header text-center">
                         <div class="form-group text-center">
                             <div class="">
-                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded" alt="avatar" >
+                                <img style="width: 50%;" src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                    class="rounded" alt="avatar">
                             </div>
                             <label>Hi, {{ Auth()->user()->customer->name }}</label>
                         </div>
@@ -56,7 +57,7 @@
                             <th>Nama Jastiper</th>
                             <th>Kota</th>
                             <th>Expedisi</th>
-                            <th>Uang Muka (Harga Jasa)</th>
+                            <th>Uang Muka</th>
                             <th>Total Harga Pesanan</th>
                             <th>Status Pesanan</th>
                             <th></th>
@@ -84,11 +85,28 @@
                                     <td>{{ $order->jastiper->nama_jastiper }}</td>
                                     <td>{{ $order->jasa->kota_jasa }} </td>
                                     <td>{{ $order->kurir }}</td>
-                                    <td>Rp{{ $order->jasa->harga_jasa }} - {{ $order->metode_pembayaran }} </td>
+                                    @if ($order->uang_muka === null)
+                                        <td>Belum Dibayar - {{ $order->metode_pembayaran }} </td>
+                                    @else
+                                        <td>Rp{{ $order->uang_muka }} - {{ $order->metode_pembayaran }}</td>
+                                    @endif
                                     <td>Rp{{ $order->total_harga }}</td>
 
                                     @if ($order->status === 'menunggu uang muka')
-                                        <td>Menunggu Uang Muka</td>
+                                        @if ($order->uang_muka === null)
+                                            <form action="/uang_muka/{{ $order->id }}" method="get">
+                                                @csrf
+
+                                                <td>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="">Bayar Uang Muka</i>
+                                                    </button>
+                                                </td>
+                                            </form>
+                                        @else
+                                            <td>Menunggu konfirmasi</td>
+                                            <td></td>
+                                        @endif
                                     @elseif ($order->payment_status === 'Ditolak')
                                         <td>
                                             <div class='badge badge-danger'>Pesanan Ditolak</div>
@@ -105,41 +123,17 @@
                                                 <button class="btn btn-secondary mb-1" type="submit">Pay!</button>
                                             </form>
                                         </td>
+                                        <td></td>
                                     @endif
 
-                                    @if ($order->status === 'menunggu uang muka')
+                                    @if ($order->uang_muka === null)
                                         <td class="">
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                                data-bs-keyboard="false" tabindex="-1"
-                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="staticBackdropLabel">Hapus Pesanan
-                                                            </h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            Apakah anda yakin akan menghapus pesanan ini?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
-                                                            <form action="{{ route('orderan.destroy', $order->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button class="btn btn-danger" type="submit">Hapus</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <form action="{{ route('orderan.destroy', $order->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit"><i
+                                                        class="fa-solid fa-trash-can"></i></button>
+                                            </form>
                                         </td>
                                     @endif
                                 @endif

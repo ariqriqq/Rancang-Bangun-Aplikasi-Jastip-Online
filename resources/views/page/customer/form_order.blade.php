@@ -27,8 +27,7 @@
                             <input type="text" name="kota_jastiper" class="form-control" value="{{ $data->kota_jasa }}"
                                 required disabled>
                         </div>
-                        <input type="text" name="kota_jastiper" class="form-control" value="{{ auth()->user()->id }}"
-                            required hidden>
+                        <input type="text" class="form-control" value="{{ auth()->user()->id }}" required hidden>
                         <p class="fw-bold mt-3">Harga Jasa</p>
                         <div class="form-group">
                             <input type="text" name="no_hp_jastiper" class="form-control" value="{{ $data->harga_jasa }}"
@@ -43,7 +42,7 @@
                         <div class="footer-head">
                             <p class="fw-bold">Nama Jastiper</p>
 
-                            <input type="text" name="nama_ewallet" class="form-control"
+                            <input type="text" name="nama_jastiper" class="form-control"
                                 value="{{ $data->jastiper->nama_jastiper }}" required disabled>
 
                         </div>
@@ -66,7 +65,7 @@
                         <div class="footer-content">
                             <p class="fw-bold">Nama</p>
                             <div class="form-group">
-                                <input type="text" name="kota_jastiper" class="form-control"
+                                <input type="text" name="name" class="form-control"
                                     value="{{ auth()->user()->customer->name }}" placeholder required disabled>
                             </div>
 
@@ -91,7 +90,7 @@
 
                             <p class="fw-bold mt-3">Alamat Pengiriman</p>
                             <div class="form-group">
-                                <input type="text" name="no_hp_jastiper" class="form-control"
+                                <input type="text" name="alamat" class="form-control"
                                     value="Rumah - {{ auth()->user()->customer->alamat }}" required disabled>
                             </div>
 
@@ -127,8 +126,8 @@
                                     value="{{ auth()->user()->customer->no_hp }}" required disabled>
 
                                 <p class="fw-bold mt-3">Uang Muka yang Harus Dibayar</p>
-                                <input type="text" name="nomor_ewallet" class="form-control"
-                                    value="{{ $data->harga_jasa }}" required disabled>
+                                <input type="text" name="uang_muka" class="form-control" value="{{ $data->harga_jasa }}"
+                                    placeholder required disabled>
 
                                 <p class="fw-bold mt-3">Metode Pembayaran Uang Muka</p>
                                 <div class="form-group mt-3">

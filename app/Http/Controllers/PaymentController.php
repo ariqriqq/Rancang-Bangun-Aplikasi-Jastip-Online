@@ -161,7 +161,7 @@ class PaymentController extends Controller
         $payment->payment_code = isset($json->payment_code) ? $json->payment_code : null;
         $payment->pdf_url = isset($json->pdf_url) ? $json->pdf_url : null;
 
-        return $payment->save() ? redirect(url('/myorder'))->with('alert-success', 'Pembayaran berhasil ') : redirect(url('/pembayaran'))->with('alert-failed', 'Terjadi kesalahan');
+        return $payment->save() ? redirect(url('/riwayat-transaksi'))->with('alert-success', 'Pembayaran berhasil ') : redirect(url('/pembayaran'))->with('alert-failed', 'Terjadi kesalahan');
     }
 
 
