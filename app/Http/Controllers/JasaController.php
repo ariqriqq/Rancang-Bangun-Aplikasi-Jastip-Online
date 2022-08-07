@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Jasa;
 use App\Models\Jastiper;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

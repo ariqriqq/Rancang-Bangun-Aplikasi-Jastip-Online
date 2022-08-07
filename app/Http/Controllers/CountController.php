@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CountController extends Controller
