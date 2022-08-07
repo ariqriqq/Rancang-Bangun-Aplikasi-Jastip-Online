@@ -6,6 +6,7 @@ use App\Models\Jasa;
 use App\Models\Jastiper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JasaController extends Controller
 {
@@ -58,6 +59,7 @@ class JasaController extends Controller
             'harga_jasa' => $request->harga_jasa,
             'tanggal_tutup' => $request->tanggal_tutup
         ]);
+        Alert::success('Jasa berhasil dibuat, tunggu orderan datang.');
         return view('page.home');
     }
 
