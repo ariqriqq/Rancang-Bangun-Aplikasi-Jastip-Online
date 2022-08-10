@@ -23,6 +23,7 @@
                                     <tr>
                                         <th>Nama Jastiper</th>
                                         <th>IDPesanan</th>
+                                        <th>Resi Paket</th>
                                         <th>IDPembayaran</th>
                                         <th>Uang Pesanan</th>
                                         <th>Uang Jasa</th>
@@ -33,37 +34,43 @@
                                     </tr>
 
                                     @forelse($payment as $payment)
-                                    @csrf
-                                    <tr>
-                                        <td class="font-weight-600">{{ $payment->jastiper->nama_jastiper }}</td>
-                                        <td class="font-weight-600">{{ $payment->order_id }} </td>
-                                        <td class="font-weight-600">{{ $payment->payment_id }} </td>
-                                        <td class="font-weight-600">{{ $payment->order->total_harga }},00</td>
-                                        <td class="font-weight-600">{{ $payment->jasa->harga_jasa }},00</td>
-                                        <td class="font-weight-600">{{ $payment->jastiper->nama_rekening }} -
-                                            {{ $payment->jastiper->nomor_rekening }}
-                                            ({{ $payment->jastiper->jenis_rekening }}) </td>
-                                        <td class="font-weight-600">{{ $payment->jastiper->nama_ewallet }} -
-                                            {{ $payment->jastiper->nomor_ewallet }}
-                                            ({{ $payment->jastiper->jenis_ewallet }}) </td>
-                                        @if ($payment->order->status_tagihan === null)
-                                            <td class="font-weight-600">
-                                                <div class="badge badge-warning">Belum dibayar</div>
+                                        @csrf
+                                        <tr>
+                                            <td class="font-weight-600">{{ $payment->jastiper->nama_jastiper }}</td>
+                                            <td class="font-weight-600">{{ $payment->order_id }} </td>
+                                            <td class="font-weight-600">{{ $payment->order->resi_paket }}({{ $payment->order->kurir }}) </td>
+                                            <td class="font-weight-600">{{ $payment->payment_id }} </td>
+                                            <td class="font-weight-600">{{ $payment->order->total_harga }},00</td>
+                                            <td class="font-weight-600">{{ $payment->jasa->harga_jasa }},00</td>
+                                            <td class="font-weight-600">{{ $payment->jastiper->nama_rekening }} -
+                                                {{ $payment->jastiper->nomor_rekening }}
+                                                ({{ $payment->jastiper->jenis_rekening }})
                                             </td>
-                                            <form action="/payment-confirm/{{ $payment->id }}" method="POST">
-                                                @csrf
-                                                <td>
-                                                    <button type="submit" class="btn btn-primary">Bayar</button>
-
+                                            <td class="font-weight-600">{{ $payment->jastiper->nama_ewallet }} -
+                                                {{ $payment->jastiper->nomor_ewallet }}
+                                                ({{ $payment->jastiper->jenis_ewallet }}) </td>
+                                            @if ($payment->order->resi_paket === null)
+                                                <td class="font-weight-600">
+                                                    <div class="badge badge-danger">Menunggu resi paket</div>
                                                 </td>
-                                            </form>
-                                        @else
-                                            <td class="font-weight-600">
-                                                <div class="badge badge-success">{{ $payment->order->status_tagihan }}
-                                            </td>
-                                        @endif
+                                            @elseif ($payment->order->status_tagihan === null)
+                                                <td class="font-weight-600">
+                                                    <div class="badge badge-warning">Belum dibayar</div>
+                                                </td>
+                                                <form action="/payment-confirm/{{ $payment->id }}" method="POST">
+                                                    @csrf
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary">Bayar</button>
 
-                                    </tr>
+                                                    </td>
+                                                </form>
+                                            @else
+                                                <td class="font-weight-600">
+                                                    <div class="badge badge-success">{{ $payment->order->status_tagihan }}
+                                                </td>
+                                            @endif
+
+                                        </tr>
                                     @empty
                                     @endforelse
 

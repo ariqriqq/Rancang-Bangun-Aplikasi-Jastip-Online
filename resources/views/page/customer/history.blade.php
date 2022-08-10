@@ -72,7 +72,7 @@
                                     @if ($payment->order->resi_paket === null)
                                         <li class="fw-bold">No Resi : Menunggu Pengiriman Paket</li>
                                     @else
-                                        <li class="fw-bold">No Resi : {{ $payment->order->resi_paket }}</li>
+                                        <li class="fw-bold">No Resi : {{ $payment->order->resi_paket }} (Paket sudah dikirim)</li>
                                     @endif
                                     <li class="fw-bold">Total Pembayaran : </li>
                                     <li class="fw-bold">&nbsp;&nbsp; Harga Jasa/Uang Muka

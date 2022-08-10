@@ -21,8 +21,9 @@
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <tr>
-                                        <th>Nama Jastiper</th>
                                         <th>IDPesanan</th>
+                                        <th>Nama Jastiper</th>
+                                        <th>Resi Paket</th>
                                         <th>IDPembayaran</th>
                                         <th>Uang Pesanan</th>
                                         <th>Uang Jasa</th>
@@ -33,8 +34,10 @@
                                     </tr>
 
                                     <tr>
-                                        <td class="font-weight-600">{{ $payment->jastiper->nama_jastiper }}</td>
                                         <td class="font-weight-600">{{ $payment->order_id }} </td>
+                                        <td class="font-weight-600">{{ $payment->jastiper->nama_jastiper }}</td>
+                                        <td class="font-weight-600">
+                                            {{ $payment->order->resi_paket }}({{ $payment->order->kurir }}) </td>
                                         <td class="font-weight-600">{{ $payment->payment_id }} </td>
                                         <td class="font-weight-600">{{ $payment->order->total_harga }},00</td>
                                         <td class="font-weight-600">{{ $payment->jasa->harga_jasa }},00</td>
@@ -44,7 +47,11 @@
                                         <td class="font-weight-600">{{ $payment->jastiper->nama_ewallet }} -
                                             {{ $payment->jastiper->nomor_ewallet }}
                                             ({{ $payment->jastiper->jenis_ewallet }}) </td>
-                                        @if ($payment->order->status_tagihan === null)
+                                        @if ($payment->order->resi_paket === null)
+                                            <td class="font-weight-600">
+                                                <div class="badge badge-danger">Menunggu resi paket</div>
+                                            </td>
+                                        @elseif ($payment->order->status_tagihan === null)
                                             <td class="font-weight-600">
                                                 <div class="badge badge-warning">Belum dibayar</div>
                                             </td>
