@@ -36,8 +36,8 @@
 
                         <tr>
                             <th>IDPesanan</th>
-                            <th>Uang Muka</th>
-                            <th>Total Harga</th>
+                            <th>Harga Jasa</th>
+                            <th>Total Harga Pesanan</th>
                             <th>Status</th>
                         </tr>
                         @forelse($data as $data)
@@ -68,7 +68,7 @@
                                         </td>
                                     @else
                                         <td>
-                                            <div class="badge badge-danger">Menunggu pembayaran </div>
+                                            <div class="badge badge-warning">Menunggu pembayaran </div>
                                         </td>
                                     @endif
                                 </tr>

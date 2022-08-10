@@ -23,6 +23,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
+                                        <th>Email</th>
                                         <th>No Hp</th>
                                         <th>Alamat</th>
                                         <th>Jenis Kelamin</th>
@@ -32,12 +33,18 @@
                                     @forelse($data as $data)
                                         @csrf
                                         <tr>
+                                            @if ($data->customer_id != null)
                                             <td>{{ $loop->iteration }}</td>
-                                            <td class="font-weight-600">{{ $data->name }}</td>
-                                            <td class="font-weight-600">{{ $data->no_hp }}</td>
-                                            <td class="font-weight-600">{{ $data->alamat }}</td>
-                                            <td class="font-weight-600">{{ $data->jenis_kelamin }}</td>
-                                            <td class="font-weight-600">{{ $data->jenis_ewallet }} - {{ $data->nomor_ewallet }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->name }}</td>
+                                            <td class="font-weight-600">{{ $data->email }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->no_hp }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->alamat }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->jenis_kelamin }}</td>
+                                            <td class="font-weight-600">{{ $data->customer->jenis_ewallet }} - {{ $data->customer->nomor_ewallet }}</td>
+                                            @else
+
+                                            @endif
+
                                         </tr>
                                     @empty
                                     @endforelse

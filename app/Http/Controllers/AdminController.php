@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Jastiper;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -102,10 +103,10 @@ class AdminController extends Controller
     public function customer()
     {
         {
-            $customer=Customer::get();
+            $user=User::with('customer')->get();
             // dd($customer);
             return view('page.admin.customer')->with([
-                'data'=>$customer,
+                'data'=>$user,
             ]);
         }
     }

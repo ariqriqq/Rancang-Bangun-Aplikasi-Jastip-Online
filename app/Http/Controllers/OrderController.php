@@ -87,10 +87,11 @@ class OrderController extends Controller
     public function show_tagihan()
     {
         $order = Order::with('jasa')->where('jastiper_id', Auth::user()->jastiper_id)->with('customer')->orderBy('id', 'DESC')->get();
-
+        // $jumlah;
         // dd($order);
         return view('page.jastiper.tagihan', [
-            'data' => $order
+            'data' => $order,
+            // 'jumlah' => $jumlah
         ]);
     }
 
